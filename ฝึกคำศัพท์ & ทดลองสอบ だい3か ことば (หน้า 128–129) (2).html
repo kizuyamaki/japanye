@@ -1,0 +1,3332 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>だい3か ことば | ฝึกคำศัพท์ &amp; ทดลองสอบ บทที่ 3</title>
+  <style>
+    /* ==========================================================================
+       1. Design Tokens & Default Dark Theme ("ธีมมืด" - Zero white flash)
+       ========================================================================== */
+    :root {
+      --bg-app: #0f1117;
+      --bg-card: #181b24;
+      --bg-subtle: #232836;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border-color: #2d3446;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.16);
+      --accent-text: #0f1117;
+      --success-bg: rgba(16, 185, 129, 0.16);
+      --success-border: #34d399;
+      --success-text: #6ee7b7;
+      --error-bg: rgba(239, 68, 68, 0.16);
+      --error-border: #f87171;
+      --error-text: #fca5a5;
+      --warn-bg: rgba(245, 158, 11, 0.16);
+      --warn-border: #fbbf24;
+      --warn-text: #fcd34d;
+      --shadow-card: 0 12px 32px -8px rgba(0, 0, 0, 0.48);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      min-height: 100dvh;
+      background-color: var(--bg-app);
+      color: var(--text-main);
+      font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', 'Sukhumvit Set', 'Thonburi', 'Sarabun', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s ease, color 0.18s ease;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    button, input {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .font-jp {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', 'MS Gothic', sans-serif;
+    }
+
+    .font-mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    /* ==========================================================================
+       2. Top Sticky Header Bar
+       ========================================================================== */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      height: 58px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: left;
+      padding: 4px 0;
+      min-width: 0;
+    }
+
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+      flex-shrink: 0;
+      background-color: var(--accent);
+      color: var(--accent-text);
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      margin: 2px 0 0;
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-shrink: 0;
+    }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-subtle);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.15s ease;
+    }
+
+    .icon-btn:hover {
+      opacity: 0.85;
+    }
+
+    .theme-trigger-btn {
+      height: 38px;
+      padding: 0 11px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-subtle);
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: opacity 0.15s ease, border-color 0.15s ease;
+    }
+
+    @media (min-width: 400px) {
+      .theme-trigger-btn {
+        font-size: 13px;
+        padding: 0 12px;
+      }
+    }
+
+    .theme-trigger-btn:hover {
+      border-color: var(--accent);
+      opacity: 0.92;
+    }
+
+    .color-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       3. Fixed Top-Right GUI Theme Popover (Viewport-Safe on All Screens)
+       ========================================================================== */
+    .overlay-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.52);
+      z-index: 990;
+      backdrop-filter: blur(2px);
+    }
+
+    .theme-popover {
+      position: fixed;
+      top: 64px;
+      right: 12px;
+      width: min(324px, calc(100vw - 24px));
+      max-height: calc(100dvh - 80px);
+      overflow-y: auto;
+      z-index: 995;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.55);
+    }
+
+    .popover-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .popover-title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .popover-close {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background-color: var(--bg-subtle);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .theme-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border-color);
+      background-color: var(--bg-subtle);
+      font-size: 12px;
+      font-weight: 600;
+      text-align: left;
+      min-width: 0;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .theme-chip span:last-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .custom-accent-row {
+      padding-top: 12px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .custom-accent-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .custom-accent-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .reset-accent-btn {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+
+    input[type="color"] {
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 8px;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       4. Custom HTML Confirmation Modal (Intercepts Mobile Back & Screen Back)
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      backdrop-filter: blur(3px);
+    }
+
+    .confirm-modal {
+      width: 100%;
+      max-width: 390px;
+      background-color: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      border-radius: 24px;
+      padding: 22px 20px;
+      box-shadow: 0 24px 54px rgba(0, 0, 0, 0.65);
+      animation: modalPop 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .modal-icon-wrap {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      background-color: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      color: var(--warn-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .modal-title {
+      margin: 0 0 6px;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .modal-desc {
+      margin: 0 0 20px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .modal-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .modal-btn-cancel {
+      min-height: 46px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1.5px solid var(--border-color);
+      background-color: var(--bg-subtle);
+      color: var(--text-main);
+      font-size: 14px;
+      font-weight: 600;
+      transition: opacity 0.15s ease;
+    }
+
+    .modal-btn-cancel:hover {
+      opacity: 0.85;
+    }
+
+    .modal-btn-confirm {
+      min-height: 46px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background-color: var(--warn-border);
+      color: #0f1117;
+      font-size: 14px;
+      font-weight: 700;
+      transition: filter 0.15s ease, transform 0.1s ease;
+    }
+
+    .modal-btn-confirm:hover {
+      filter: brightness(0.94);
+    }
+
+    .modal-btn-confirm:active {
+      transform: scale(0.98);
+    }
+
+    /* ==========================================================================
+       5. Main Layout & Card Containers
+       ========================================================================== */
+    .main-container {
+      flex: 1;
+      width: 100%;
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 18px 16px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+    }
+
+    @media (min-width: 640px) {
+      .main-container {
+        padding: 28px 20px 40px;
+      }
+      .card {
+        padding: 28px;
+      }
+    }
+
+    /* ==========================================================================
+       6. Setup Screen Styles
+       ========================================================================== */
+    .setup-header {
+      margin-bottom: 18px;
+    }
+
+    .setup-title {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .setup-subtitle {
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .exam-lock-banner {
+      margin-bottom: 18px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1.5px solid var(--warn-border);
+      background-color: var(--warn-bg);
+      color: var(--warn-text);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    .setup-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .section-locked {
+      opacity: 0.5;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .field-label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .lock-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--warn-text);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .grid-2-fixed {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    @media (min-width: 560px) {
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .option-card {
+      background-color: var(--bg-card);
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 13px 14px;
+      text-align: left;
+      transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .option-card:hover:not(:disabled) {
+      border-color: var(--accent);
+      background-color: var(--accent-soft);
+    }
+
+    .option-card.selected {
+      border-color: var(--accent);
+      background-color: var(--accent-soft);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .option-row-between {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .option-row-start {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .option-icon-box {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .option-title {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .option-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 3px;
+      line-height: 1.35;
+    }
+
+    .pill-tag {
+      padding: 3px 9px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .mini-tag {
+      padding: 2px 7px;
+      border-radius: 7px;
+      font-size: 11px;
+      font-weight: 700;
+      background-color: var(--bg-subtle);
+      color: var(--text-muted);
+    }
+
+    .furigana-row {
+      padding-top: 14px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .switch-btn {
+      position: relative;
+      width: 48px;
+      height: 28px;
+      border-radius: 999px;
+      flex-shrink: 0;
+      transition: background-color 0.2s ease;
+      padding: 2px;
+    }
+
+    .switch-knob {
+      display: block;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .switch-btn[aria-checked="true"] .switch-knob {
+      transform: translateX(20px);
+    }
+
+    .switch-btn[aria-checked="false"] .switch-knob {
+      transform: translateX(0);
+    }
+
+    .btn-primary {
+      width: 100%;
+      min-height: 50px;
+      padding: 13px 22px;
+      border-radius: 16px;
+      background-color: var(--accent);
+      color: var(--accent-text);
+      font-size: 16px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.35);
+      transition: filter 0.15s ease, transform 0.1s ease, opacity 0.15s ease;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      filter: brightness(0.93);
+    }
+
+    .btn-primary:active:not(:disabled) {
+      transform: scale(0.985);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.42;
+    }
+
+    /* ==========================================================================
+       7. Quiz & Mock Exam Screen Styles
+       ========================================================================== */
+    .quiz-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .status-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .status-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .status-pill {
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .back-pill {
+      color: var(--text-muted);
+    }
+
+    .back-pill:hover {
+      color: var(--text-main);
+      border-color: var(--accent);
+    }
+
+    .timer-pill-warn {
+      background-color: var(--warn-bg) !important;
+      border-color: var(--warn-border) !important;
+      color: var(--warn-text) !important;
+    }
+
+    .timer-pill-danger {
+      background-color: var(--error-bg) !important;
+      border-color: var(--error-border) !important;
+      color: var(--error-text) !important;
+    }
+
+    .early-submit-btn {
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 12px;
+      border: 1.5px solid var(--warn-border);
+      background-color: var(--warn-bg);
+      color: var(--warn-text);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background-color: var(--bg-subtle);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background-color: var(--accent);
+      transition: width 0.28s ease;
+    }
+
+    .card-top-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .mode-badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background-color: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .kb-hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .kb-hint {
+        display: inline;
+      }
+    }
+
+    .prompt-stage {
+      padding: 24px 8px 28px;
+      text-align: center;
+    }
+
+    .prompt-text-jp {
+      font-size: clamp(30px, 7vw, 48px);
+      font-weight: 700;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .prompt-text-th {
+      font-size: clamp(22px, 5.2vw, 32px);
+      font-weight: 700;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    ruby {
+      ruby-align: center;
+    }
+
+    rt {
+      font-size: 0.42em;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* Multiple Choice Grid */
+    .choice-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 560px) {
+      .choice-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .choice-btn {
+      background-color: var(--bg-card);
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 14px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 54px;
+      transition: border-color 0.14s ease, background-color 0.14s ease, transform 0.1s ease;
+    }
+
+    .choice-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      background-color: var(--accent-soft);
+    }
+
+    .choice-btn:active:not(:disabled) {
+      transform: scale(0.99);
+    }
+
+    .choice-btn.choice-selected {
+      border-color: var(--accent) !important;
+      background-color: var(--accent-soft) !important;
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .choice-btn.choice-selected .choice-num {
+      background-color: var(--accent) !important;
+      color: var(--accent-text) !important;
+    }
+
+    .choice-btn.choice-correct {
+      background-color: var(--success-bg) !important;
+      border-color: var(--success-border) !important;
+      color: var(--success-text) !important;
+      box-shadow: none !important;
+    }
+
+    .choice-btn.choice-wrong {
+      background-color: var(--error-bg) !important;
+      border-color: var(--error-border) !important;
+      color: var(--error-text) !important;
+      box-shadow: none !important;
+    }
+
+    .choice-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      background-color: var(--bg-subtle);
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .choice-label {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    /* Typing Input */
+    .typing-input {
+      width: 100%;
+      background-color: var(--bg-subtle);
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 15px 16px;
+      font-size: 19px;
+      font-weight: 600;
+      text-align: center;
+      color: var(--text-main);
+      transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .typing-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background-color: var(--bg-card);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .typing-helper {
+      margin: 9px 0 0;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    kbd {
+      padding: 2px 6px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-subtle);
+      font-size: 11px;
+    }
+
+    /* Instant Feedback Banner */
+    .feedback-box {
+      margin-top: 18px;
+      padding: 15px;
+      border-radius: 18px;
+      border: 2px solid transparent;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .feedback-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .feedback-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .feedback-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .feedback-user-ans {
+      font-size: 12px;
+      margin-top: 3px;
+      opacity: 0.9;
+    }
+
+    .feedback-detail {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(148, 163, 184, 0.22);
+    }
+
+    .feedback-jp-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .feedback-jp-word {
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .feedback-kana {
+      font-size: 13px;
+      opacity: 0.85;
+    }
+
+    .feedback-alts {
+      font-size: 12px;
+      opacity: 0.82;
+      margin-top: 2px;
+    }
+
+    .feedback-th-word {
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    /* Bottom Action Footer inside Card */
+    .card-footer-actions {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .btn-secondary {
+      min-height: 46px;
+      padding: 11px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-subtle);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      transition: opacity 0.15s ease;
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      opacity: 0.85;
+      color: var(--text-main);
+    }
+
+    .btn-secondary:disabled {
+      opacity: 0.38;
+    }
+
+    .btn-action-next {
+      min-height: 46px;
+      padding: 11px 22px;
+      border-radius: 14px;
+      background-color: var(--accent);
+      color: var(--accent-text);
+      font-size: 15px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-left: auto;
+      transition: filter 0.15s ease, transform 0.1s ease, opacity 0.15s ease;
+    }
+
+    .btn-action-next:hover:not(:disabled) {
+      filter: brightness(0.93);
+    }
+
+    .btn-action-next:disabled {
+      opacity: 0.42;
+    }
+
+    /* ==========================================================================
+       8. Summary & Exam Results Screen Styles
+       ========================================================================== */
+    .summary-top {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .summary-badge-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background-color: var(--accent-soft);
+      color: var(--accent);
+      font-size: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .exam-hero-box {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1.5px solid var(--accent);
+      background-color: var(--accent-soft);
+    }
+
+    .exam-hero-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .exam-hero-score {
+      font-size: clamp(24px, 6vw, 34px);
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .exam-hero-meta {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .metric-box {
+      background-color: var(--bg-subtle);
+      border-radius: 16px;
+      padding: 12px 8px;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .metric-val {
+      font-size: 20px;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+
+    .review-header {
+      margin-top: 20px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .review-title {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .filter-pills {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-btn {
+      padding: 5px 11px;
+      border-radius: 9px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 320px;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
+    .review-item {
+      background-color: var(--bg-subtle);
+      border-radius: 16px;
+      padding: 12px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .review-item-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .review-status-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .review-word-main {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .review-user-tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 8px;
+      max-width: 145px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .summary-footer-btns {
+      margin-top: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @media (min-width: 560px) {
+      .summary-footer-btns {
+        flex-direction: row;
+      }
+    }
+
+    .summary-btn-alt {
+      flex: 1;
+      min-height: 48px;
+      padding: 12px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-subtle);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .summary-btn-home {
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       9. Animations & Scrollbar
+       ========================================================================== */
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.95) translateY(6px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .animate-in {
+      animation: fadeSlideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 999px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       Top Sticky Header
+       ======================================================================== -->
+  <header class="app-header">
+    <button id="headerLogoBtn" type="button" class="header-brand" title="กลับหน้าตั้งค่าหลัก">
+      <span class="brand-badge font-jp">３</span>
+      <div class="brand-text">
+        <h1 class="brand-title font-jp">だい3か ことば</h1>
+        <p class="brand-sub">หน้า 128–129 • 67 คำ</p>
+      </div>
+    </button>
+
+    <div class="header-actions">
+      <button id="soundToggleBtn" type="button" class="icon-btn" title="เปิด/ปิดเสียงเอฟเฟกต์" aria-label="เปิด/ปิดเสียงเอฟเฟกต์">
+        <svg id="soundOnIcon" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+        </svg>
+        <svg id="soundOffIcon" class="hidden" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color: var(--text-muted);">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zM17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+        </svg>
+      </button>
+
+      <button id="themeMenuBtn" type="button" class="theme-trigger-btn" aria-expanded="false" aria-haspopup="true">
+        <span class="color-dot" style="background-color: var(--accent);"></span>
+        <span>เปลี่ยนสีธีม / GUI</span>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" style="color: var(--text-muted);">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       Fixed Top-Right Theme Popover & Backdrop
+       ======================================================================== -->
+  <div id="themeBackdrop" class="overlay-backdrop hidden" aria-hidden="true"></div>
+  <div id="themePopover" class="theme-popover hidden animate-in" role="dialog" aria-label="เปลี่ยนสีธีม / GUI">
+    <div class="popover-head">
+      <span class="popover-title">เปลี่ยนสีธีม / GUI</span>
+      <button id="closeThemeBtn" type="button" class="popover-close" aria-label="ปิดหน้าต่างธีม">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="themePresetsGrid" class="theme-grid"></div>
+
+    <div class="custom-accent-row">
+      <label for="customAccentInput" class="custom-accent-label">สีปุ่ม / ไฮไลต์เอง</label>
+      <div class="custom-accent-controls">
+        <button id="resetAccentBtn" type="button" class="reset-accent-btn hidden">รีเซ็ตสี</button>
+        <input id="customAccentInput" type="color" value="#38bdf8" title="เลือกสีปุ่มเอง" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Custom HTML Confirmation Modal (Intercepts Mobile Back & Screen Back)
+       ======================================================================== -->
+  <div id="confirmModalBackdrop" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="confirmModalTitle">
+    <div class="confirm-modal">
+      <div class="modal-icon-wrap">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      </div>
+      <h3 id="confirmModalTitle" class="modal-title">ต้องการกลับไปหน้าตั้งค่าหลักหรือไม่?</h3>
+      <p id="confirmModalDesc" class="modal-desc">ความคืบหน้าในรอบนี้จะไม่ถูกบันทึก</p>
+      <div class="modal-actions">
+        <button id="confirmModalStayBtn" type="button" class="modal-btn-cancel">อยู่หน้านี้ต่อ</button>
+        <button id="confirmModalLeaveBtn" type="button" class="modal-btn-confirm">ยืนยันกลับหน้าเดิม</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Main Application Container
+       ======================================================================== -->
+  <main class="main-container">
+
+    <!-- ======================================================================
+         VIEW 1: SETUP SCREEN
+         ====================================================================== -->
+    <section id="setupView" class="card animate-in">
+      <div class="setup-header">
+        <h2 class="setup-title">ตั้งค่าการฝึกคำศัพท์ &amp; ทดลองสอบ</h2>
+        <p class="setup-subtitle">รวมคำศัพท์บทที่ 3 ทั้งหมดไว้ในชุดเดียว เลือกโหมดที่ต้องการแล้วเริ่มได้เลย</p>
+      </div>
+
+      <!-- Exam Lock Notice Banner -->
+      <div id="examLockNotice" class="exam-lock-banner hidden animate-in">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+        <div>
+          <strong>กติกาโหมดทดลองสอบจริง:</strong> บังคับใช้คำศัพท์ <strong>ทั้งหมด (67 คำ)</strong> แบบ <strong>เรียงตามลำดับ</strong> จากบนลงล่าง และ <strong>ปิดตัวช่วยอ่านคันจิ (ฟุริกานะ)</strong> ทั้งหมด (ไม่สามารถปรับแก้ได้ระหว่างเลือกโหมดสอบ)
+        </div>
+      </div>
+
+      <div class="setup-stack">
+        <!-- 1. ระดับคำศัพท์ -->
+        <div id="levelSection">
+          <div class="field-label-row">
+            <span class="field-label">1. ระดับคำศัพท์</span>
+            <span class="lock-badge hidden">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              <span>ล็อก: ทั้งหมด 67 คำ</span>
+            </span>
+          </div>
+          <div class="grid-2" id="levelGroup">
+            <button type="button" data-level="easy" class="option-card selected">
+              <div class="option-row-between">
+                <div>
+                  <div class="option-title">เฉพาะคำง่าย</div>
+                  <div class="option-desc">คำพื้นฐาน ไม่มีคันจิยาก</div>
+                </div>
+                <span id="easyCountBadge" class="pill-tag" style="background-color: var(--accent-soft); color: var(--accent);">41 คำ</span>
+              </div>
+            </button>
+
+            <button type="button" data-level="all" class="option-card">
+              <div class="option-row-between">
+                <div>
+                  <div class="option-title">ทั้งหมด</div>
+                  <div class="option-desc">รวมครบทุกคำในบทที่ 3</div>
+                </div>
+                <span class="pill-tag" style="background-color: var(--bg-subtle); color: var(--text-muted);">67 คำ</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. ลำดับคำศัพท์ -->
+        <div id="orderSection">
+          <div class="field-label-row">
+            <span class="field-label">2. ลำดับคำศัพท์</span>
+            <span class="lock-badge hidden">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              <span>ล็อก: เรียงตามลำดับ</span>
+            </span>
+          </div>
+          <div class="grid-2-fixed" id="orderGroup">
+            <button type="button" data-order="random" class="option-card selected">
+              <div class="option-row-start">
+                <span class="option-icon-box" style="background-color: var(--accent-soft); color: var(--accent);">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </span>
+                <div>
+                  <div class="option-title">สุ่มลำดับ</div>
+                  <div class="option-desc">สลับข้อไม่ซ้ำ</div>
+                </div>
+              </div>
+            </button>
+
+            <button type="button" data-order="sequential" class="option-card">
+              <div class="option-row-start">
+                <span class="option-icon-box" style="background-color: var(--bg-subtle); color: var(--text-muted);">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h10" />
+                  </svg>
+                </span>
+                <div>
+                  <div class="option-title">เรียงตามลำดับ</div>
+                  <div class="option-desc">จากบนลงล่าง</div>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. รูปแบบการฝึก / สอบ -->
+        <div>
+          <div class="field-label-row">
+            <span class="field-label">3. รูปแบบการฝึก</span>
+          </div>
+          <div class="grid-2" id="modeGroup">
+            <button type="button" data-mode="choice" class="option-card selected">
+              <div class="option-row-between">
+                <span class="option-title">ติ๊กเลือกคำแปล</span>
+                <span class="mini-tag font-mono">1-4</span>
+              </div>
+              <div class="option-desc">เลือกตัวเลือก 1–4 แล้วกดยืนยันคำตอบ</div>
+            </button>
+
+            <button type="button" data-mode="typing-th" class="option-card">
+              <div class="option-row-between">
+                <span class="option-title">พิมพ์คำแปล</span>
+                <span class="mini-tag">ไทย</span>
+              </div>
+              <div class="option-desc">ดูคำญี่ปุ่น พิมพ์ความหมายภาษาไทยเอง</div>
+            </button>
+
+            <button type="button" data-mode="typing-jp" class="option-card">
+              <div class="option-row-between">
+                <span class="option-title">พิมพ์ภาษาญี่ปุ่น</span>
+                <span class="mini-tag font-jp">あ/漢</span>
+              </div>
+              <div class="option-desc">ดูคำแปล พิมพ์คันจิ หรือฮิรา/คาตา</div>
+            </button>
+
+            <button type="button" data-mode="exam" class="option-card">
+              <div class="option-row-between">
+                <span class="option-title">ทดลองทำแบบทดสอบจริง</span>
+                <span class="mini-tag font-mono" style="background-color: var(--warn-bg); color: var(--warn-text);">50:00</span>
+              </div>
+              <div class="option-desc">จับเวลา 50 นาที เรียง 67 ข้อ ลุ้นคะแนนตอนจบ</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. ตัวช่วยอ่าน (ฟุริกานะ) -->
+        <div id="furiganaSection" class="furigana-row">
+          <div>
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <span class="option-title">4. ตัวช่วยอ่าน (ฟุริกานะ)</span>
+              <span class="lock-badge hidden">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <span>ล็อก: ปิด</span>
+              </span>
+            </div>
+            <div class="option-desc font-jp">เปิด / ปิด ฮิรางานะบนคันจิ เช่น 火(か)よう日(び), 好(す)き</div>
+          </div>
+
+          <button id="furiganaToggleSetup" type="button" role="switch" aria-checked="true" class="switch-btn" style="background-color: var(--accent);">
+            <span class="switch-knob"></span>
+          </button>
+        </div>
+
+        <!-- Start Button -->
+        <button id="startPracticeBtn" type="button" class="btn-primary">
+          <span id="startBtnLabel">เริ่มฝึกเลย</span>
+          <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         VIEW 2: PRACTICE & MOCK EXAM SCREEN
+         ====================================================================== -->
+    <section id="quizView" class="quiz-wrapper hidden">
+      <!-- Top Status Bar -->
+      <div class="status-bar">
+        <button id="quitQuizBtn" type="button" class="status-pill back-pill">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          <span id="quitBtnText">ย้อนกลับ</span>
+        </button>
+
+        <!-- Normal Practice Controls -->
+        <div id="practiceStatusControls" class="status-group">
+          <button id="furiganaLiveBtn" type="button" class="status-pill">
+            <span id="furiganaLiveDot" style="width:8px; height:8px; border-radius:50%; background-color: var(--accent);"></span>
+            <span>ฟุริกานะ: <span id="furiganaLiveLabel">เปิด</span></span>
+          </button>
+
+          <div class="status-pill" style="font-weight:700;">
+            <span id="progressText" style="color: var(--accent);">ข้อ 1 / 67</span>
+            <span style="color: var(--text-muted);">|</span>
+            <span id="scoreText" style="color: var(--success-text);">ถูก 0</span>
+          </div>
+        </div>
+
+        <!-- Mock Exam Controls -->
+        <div id="examStatusControls" class="status-group hidden">
+          <div id="examTimerContainer" class="status-pill" style="font-weight:700;">
+            <span id="examProgressText" style="color: var(--accent);">ข้อที่ 1 / 67</span>
+            <span style="color: var(--text-muted);">|</span>
+            <span id="examTimerBadge" class="font-mono">⏱ <span id="examTimerText">50:00</span></span>
+          </div>
+
+          <button id="earlySubmitExamBtn" type="button" class="early-submit-btn">
+            ส่งข้อสอบเลย
+          </button>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-track">
+        <div id="progressBar" class="progress-fill"></div>
+      </div>
+
+      <!-- Question Card -->
+      <div id="questionCard" class="card animate-in">
+        <div class="card-top-meta">
+          <span id="modeBadge" class="mode-badge">ติ๊กเลือกคำแปล</span>
+          <span id="keyboardHintText" class="kb-hint">กด 1–4 เลือกข้อ • Enter ยืนยันคำตอบ</span>
+        </div>
+
+        <div class="prompt-stage">
+          <div id="questionPrompt" class="prompt-text-jp font-jp"></div>
+        </div>
+
+        <!-- 4 Multiple Choice Buttons -->
+        <div id="choiceContainer" class="choice-grid hidden"></div>
+
+        <!-- Keyboard Typing Input -->
+        <div id="typingContainer" class="hidden">
+          <input
+            id="answerInput"
+            type="text"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder="พิมพ์คำตอบที่นี่..."
+            class="typing-input"
+          />
+          <p id="typingHelperNote" class="typing-helper">
+            พิมพ์แล้วกด <kbd class="font-mono">Enter</kbd> เพื่อตรวจคำตอบ
+          </p>
+        </div>
+
+        <!-- Instant Feedback Box -->
+        <div id="feedbackBox" class="feedback-box hidden animate-in">
+          <div id="feedbackIcon" class="feedback-icon">✓</div>
+          <div class="feedback-content">
+            <div id="feedbackTitle" class="feedback-title">ถูกต้อง!</div>
+            <div id="feedbackUserAnswer" class="feedback-user-ans hidden"></div>
+            <div class="feedback-detail">
+              <div class="feedback-jp-line">
+                <span id="feedbackJp" class="feedback-jp-word font-jp"></span>
+                <span id="feedbackKana" class="feedback-kana font-jp"></span>
+              </div>
+              <div id="feedbackAltsJp" class="feedback-alts font-jp hidden"></div>
+              <div id="feedbackTh" class="feedback-th-word"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Bottom Actions -->
+        <div class="card-footer-actions">
+          <button id="skipBtn" type="button" class="btn-secondary">ดูเฉลย / ข้าม</button>
+
+          <button id="primaryActionBtn" type="button" class="btn-action-next">
+            <span id="primaryActionLabel">ยืนยันคำตอบ</span>
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         VIEW 3: SUMMARY & MOCK EXAM RESULT SCREEN
+         ====================================================================== -->
+    <section id="summaryView" class="card hidden animate-in">
+      <div class="summary-top">
+        <div class="summary-badge-icon">
+          <span id="summaryEmoji">🎉</span>
+        </div>
+        <h2 id="summaryHeading" class="setup-title">สรุปผลการฝึก</h2>
+        <p id="summarySubheading" class="setup-subtitle">だい3か ことば (หน้า 128–129)</p>
+
+        <!-- Mock Exam Score Banner -->
+        <div id="examScoreHero" class="exam-hero-box hidden">
+          <div class="exam-hero-label">ผลคะแนนสอบจำลอง</div>
+          <div id="examHeroScoreText" class="exam-hero-score">ได้ 0 เต็ม 67 คะแนน</div>
+          <div class="exam-hero-meta">
+            <span id="examTimeElapsedText" style="padding:4px 10px; border-radius:8px; background-color: var(--bg-subtle); color: var(--text-muted);">ใช้เวลา 0 นาที 0 วินาที</span>
+            <span id="examGradeBadge" style="padding:4px 10px; border-radius:8px;"></span>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-label">คะแนนรวม</div>
+            <div id="summaryScore" class="metric-val">0/0</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">ความแม่นยำ</div>
+            <div id="summaryPercent" class="metric-val" style="color: var(--accent);">0%</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">ผิด / ไม่ได้ตอบ</div>
+            <div id="summaryMissedCount" class="metric-val" style="color: var(--error-text);">0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review List -->
+      <div>
+        <div class="review-header">
+          <h3 class="review-title">เฉลยและรายการคำศัพท์ทั้งหมด (<span id="summaryTotalListCount">0</span> ข้อ)</h3>
+          <div class="filter-pills">
+            <button id="filterAllReviewBtn" type="button" class="filter-btn" style="background-color: var(--accent); color: var(--accent-text);">
+              ทั้งหมด
+            </button>
+            <button id="filterMissedReviewBtn" type="button" class="filter-btn" style="background-color: var(--bg-subtle); color: var(--text-muted);">
+              เฉพาะที่ผิด
+            </button>
+          </div>
+        </div>
+
+        <div id="practicedResultsList" class="review-list"></div>
+      </div>
+
+      <!-- Summary Footer Buttons -->
+      <div class="summary-footer-btns">
+        <button id="retryMissedBtn" type="button" class="btn-primary hidden" style="flex:1;">
+          ฝึกเฉพาะคำที่ผิดซ้ำ (<span id="retryMissedCount">0</span> คำ)
+        </button>
+        <button id="retryAllBtn" type="button" class="summary-btn-alt">
+          เริ่มใหม่อีกรอบ
+        </button>
+        <button id="backHomeBtn" type="button" class="summary-btn-home">
+          กลับหน้าตั้งค่าหลัก
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       Application Script (Pure Vanilla JS - Zero external dependencies)
+       ======================================================================== -->
+  <script>
+    /**
+     * 1. Complete 67-Word Vocabulary Dataset in Exact Top-to-Bottom Order (だい3か ことば หน้า 128–129)
+     *    41 Easy words (easy: true) + 26 Harder words (easy: false) = 67 Total words
+     */
+    const VOCABULARY = [
+      // 1-2: れんしゅう1
+      { id: 1, jpDisplay: "~じ", jpFurigana: "~じ", acceptedJp: ["~じ", "じ"], thaiDisplay: "...โมง ...นาฬิกา", acceptedThai: ["โมง", "นาฬิกา", "โมง นาฬิกา"], easy: true },
+      { id: 2, jpDisplay: "~ふん／ぷん", jpFurigana: "~ふん／ぷん", acceptedJp: ["~ふん／ぷん", "ふん", "ぷん", "ふんぷん", "ふん/ぷん", "ふん／ぷん"], thaiDisplay: "...นาที", acceptedThai: ["นาที"], easy: true },
+      // 3-5: れんしゅう2
+      { id: 3, jpDisplay: "いま", jpFurigana: "いま", acceptedJp: ["いま", "今"], thaiDisplay: "ตอนนี้ ขณะนี้", acceptedThai: ["ตอนนี้", "ขณะนี้", "ตอนนี้ ขณะนี้"], easy: true },
+      { id: 4, jpDisplay: "なんじ", jpFurigana: "なんじ", acceptedJp: ["なんじ", "何時"], thaiDisplay: "กี่โมง", acceptedThai: ["กี่โมง"], easy: true },
+      { id: 5, jpDisplay: "~はん", jpFurigana: "~はん", acceptedJp: ["~はん", "はん", "半"], thaiDisplay: "...ครึ่ง", acceptedThai: ["ครึ่ง"], easy: true },
+      // 6-7: れんしゅう3
+      { id: 6, jpDisplay: "ごご", jpFurigana: "ごご", acceptedJp: ["ごご", "午後"], thaiDisplay: "p.m.", acceptedThai: ["pm", "p.m.", "ตอนบ่าย", "บ่าย"], easy: true },
+      { id: 7, jpDisplay: "ごぜん", jpFurigana: "ごぜん", acceptedJp: ["ごぜん", "午前"], thaiDisplay: "a.m.", acceptedThai: ["am", "a.m.", "ตอนเช้า", "เช้า"], easy: true },
+      // 8-10: れんしゅう4
+      { id: 8, jpDisplay: "とうきょう", jpFurigana: "とうきょう", acceptedJp: ["とうきょう", "東京"], thaiDisplay: "โตเกียว", acceptedThai: ["โตเกียว"], easy: true },
+      { id: 9, jpDisplay: "バンコク", jpFurigana: "バンコク", acceptedJp: ["バンコク", "ばんこく"], thaiDisplay: "กรุงเทพฯ", acceptedThai: ["กรุงเทพ", "กรุงเทพฯ", "กรุงเทพมหานคร"], easy: true },
+      { id: 10, jpDisplay: "ペキン", jpFurigana: "ペキン", acceptedJp: ["ペキン", "ぺきん", "北京"], thaiDisplay: "ปักกิ่ง", acceptedThai: ["ปักกิ่ง"], easy: true },
+      // 11-19: れんしゅう6
+      { id: 11, jpDisplay: "火よう日", jpFurigana: "<ruby>火<rt>か</rt></ruby>よう<ruby>日<rt>び</rt></ruby>", acceptedJp: ["火よう日", "火曜日", "かようび"], thaiDisplay: "วันอังคาร", acceptedThai: ["วันอังคาร", "อังคาร"], easy: false },
+      { id: 12, jpDisplay: "金よう日", jpFurigana: "<ruby>金<rt>きん</rt></ruby>よう<ruby>日<rt>び</rt></ruby>", acceptedJp: ["金よう日", "金曜日", "きんようび"], thaiDisplay: "วันศุกร์", acceptedThai: ["วันศุกร์", "ศุกร์"], easy: false },
+      { id: 13, jpDisplay: "月よう日", jpFurigana: "<ruby>月<rt>げつ</rt></ruby>よう<ruby>日<rt>び</rt></ruby>", acceptedJp: ["月よう日", "月曜日", "げつようび"], thaiDisplay: "วันจันทร์", acceptedThai: ["วันจันทร์", "จันทร์"], easy: false },
+      { id: 14, jpDisplay: "水よう日", jpFurigana: "<ruby>水<rt>すい</rt></ruby>よう<ruby>日<rt>び</rt></ruby>", acceptedJp: ["水よう日", "水曜日", "すいようび"], thaiDisplay: "วันพุธ", acceptedThai: ["วันพุธ", "พุธ"], easy: false },
+      { id: 15, jpDisplay: "たんじょう日", jpFurigana: "たんじょう<ruby>日<rt>び</rt></ruby>", acceptedJp: ["たんじょう日", "誕生日", "たんじょうび"], thaiDisplay: "วันเกิด", acceptedThai: ["วันเกิด"], easy: false },
+      { id: 16, jpDisplay: "土よう日", jpFurigana: "<ruby>土<rt>ど</rt></ruby>よう<ruby>日<rt>び</rt></ruby>", acceptedJp: ["土よう日", "土曜日", "どようび"], thaiDisplay: "วันเสาร์", acceptedThai: ["วันเสาร์", "เสาร์"], easy: false },
+      { id: 17, jpDisplay: "なんよう日", jpFurigana: "なんよう<ruby>日<rt>び</rt></ruby>", acceptedJp: ["なんよう日", "何曜日", "なんようび"], thaiDisplay: "วันอะไร (ในรอบสัปดาห์)", acceptedThai: ["วันอะไร", "วันอะไร (ในรอบสัปดาห์)", "วันอะไรในรอบสัปดาห์"], easy: false },
+      { id: 18, jpDisplay: "日よう日", jpFurigana: "<ruby>日<rt>にち</rt></ruby>よう<ruby>日<rt>び</rt></ruby>", acceptedJp: ["日よう日", "日曜日", "にちようび"], thaiDisplay: "วันอาทิตย์", acceptedThai: ["วันอาทิตย์", "อาทิตย์"], easy: false },
+      { id: 19, jpDisplay: "木よう日", jpFurigana: "<ruby>木<rt>もく</rt></ruby>よう<ruby>日<rt>び</rt></ruby>", acceptedJp: ["木よう日", "木曜日", "もくようび"], thaiDisplay: "วันพฤหัสบดี", acceptedThai: ["วันพฤหัสบดี", "วันพฤหัส", "พฤหัสบดี"], easy: false },
+      // 20-22: れんしゅう7
+      { id: 20, jpDisplay: "かていか", jpFurigana: "かていか", acceptedJp: ["かていか", "家庭科"], thaiDisplay: "คหกรรม", acceptedThai: ["คหกรรม", "วิชาคหกรรม"], easy: false },
+      { id: 21, jpDisplay: "~じかんめ", jpFurigana: "~じかんめ", acceptedJp: ["~じかんめ", "じかんめ", "時間目"], thaiDisplay: "ชั่วโมงที่... คาบที่...", acceptedThai: ["ชั่วโมงที่", "คาบที่", "ชั่วโมงที่ คาบที่"], easy: false },
+      { id: 22, jpDisplay: "れきし", jpFurigana: "れきし", acceptedJp: ["れきし", "歴史"], thaiDisplay: "ประวัติศาสตร์", acceptedThai: ["ประวัติศาสตร์", "วิชาประวัติศาสตร์"], easy: false },
+      // 23-40: れんしゅう8
+      { id: 23, jpDisplay: "ココナッツ", jpFurigana: "ココナッツ", acceptedJp: ["ココナッツ", "ここなっつ"], thaiDisplay: "มะพร้าว", acceptedThai: ["มะพร้าว"], easy: true },
+      { id: 24, jpDisplay: "サッカー", jpFurigana: "サッカー", acceptedJp: ["サッカー", "さっかー"], thaiDisplay: "ฟุตบอล", acceptedThai: ["ฟุตบอล", "บอล"], easy: true },
+      { id: 25, jpDisplay: "すいか", jpFurigana: "すいか", acceptedJp: ["すいか", "スイカ", "西瓜"], thaiDisplay: "แตงโม", acceptedThai: ["แตงโม"], easy: true },
+      { id: 26, jpDisplay: "好き", jpFurigana: "<ruby>好<rt>す</rt></ruby>き", acceptedJp: ["好き", "すき"], thaiDisplay: "ชอบ", acceptedThai: ["ชอบ"], easy: false },
+      { id: 27, jpDisplay: "スポーツ", jpFurigana: "スポーツ", acceptedJp: ["スポーツ", "すぽーつ"], thaiDisplay: "กีฬา", acceptedThai: ["กีฬา"], easy: true },
+      { id: 28, jpDisplay: "タイりょうり", jpFurigana: "タイりょうり", acceptedJp: ["タイりょうり", "タイ料理", "たいりょうり"], thaiDisplay: "อาหารไทย", acceptedThai: ["อาหารไทย"], easy: false },
+      { id: 29, jpDisplay: "たっきゅう", jpFurigana: "たっきゅう", acceptedJp: ["たっきゅう", "卓球"], thaiDisplay: "ปิงปอง", acceptedThai: ["ปิงปอง", "เทเบิลเทนนิส"], easy: true },
+      { id: 30, jpDisplay: "テニス", jpFurigana: "テニス", acceptedJp: ["テニス", "てにす"], thaiDisplay: "เทนนิส", acceptedThai: ["เทนนิส"], easy: true },
+      { id: 31, jpDisplay: "ドリアン", jpFurigana: "ドリアン", acceptedJp: ["ドリアン", "どりあん"], thaiDisplay: "ทุเรียน", acceptedThai: ["ทุเรียน"], easy: true },
+      { id: 32, jpDisplay: "パイナップル", jpFurigana: "パイナップル", acceptedJp: ["パイナップル", "ぱいなっぷる"], thaiDisplay: "สับปะรด", acceptedThai: ["สับปะรด", "สัปปะรด"], easy: false },
+      { id: 33, jpDisplay: "バスケットボール", jpFurigana: "バスケットボール", acceptedJp: ["バスケットボール", "ばすけっとぼーる"], thaiDisplay: "บาสเกตบอล", acceptedThai: ["บาสเกตบอล", "บาส"], easy: false },
+      { id: 34, jpDisplay: "バドミントン", jpFurigana: "バドミントン", acceptedJp: ["バドミントン", "ばどみんとん"], thaiDisplay: "แบดมินตัน", acceptedThai: ["แบดมินตัน", "แบด"], easy: false },
+      { id: 35, jpDisplay: "バナナ", jpFurigana: "バナナ", acceptedJp: ["バナナ", "ばなな"], thaiDisplay: "กล้วย", acceptedThai: ["กล้วย"], easy: true },
+      { id: 36, jpDisplay: "パパイヤ", jpFurigana: "パパイヤ", acceptedJp: ["パパイヤ", "ぱぱいや"], thaiDisplay: "มะละกอ", acceptedThai: ["มะละกอ"], easy: true },
+      { id: 37, jpDisplay: "バレーボール", jpFurigana: "バレーボール", acceptedJp: ["バレーボール", "ばれーぼーる"], thaiDisplay: "วอลเลย์บอล", acceptedThai: ["วอลเลย์บอล", "วอลเลย์"], easy: false },
+      { id: 38, jpDisplay: "マンゴー", jpFurigana: "マンゴー", acceptedJp: ["マンゴー", "まんごー"], thaiDisplay: "มะม่วง", acceptedThai: ["มะม่วง"], easy: true },
+      { id: 39, jpDisplay: "マンゴスチン", jpFurigana: "マンゴスチン", acceptedJp: ["マンゴスチン", "まんごすちん"], thaiDisplay: "มังคุด", acceptedThai: ["มังคุด"], easy: false },
+      { id: 40, jpDisplay: "メロン", jpFurigana: "メロン", acceptedJp: ["メロン", "めろん"], thaiDisplay: "เมลอน", acceptedThai: ["เมลอน", "เมล่อน"], easy: true },
+      // 41: はなしてみましょう
+      { id: 41, jpDisplay: "かもく", jpFurigana: "かもく", acceptedJp: ["かもく", "科目"], thaiDisplay: "วิชา", acceptedThai: ["วิชา"], easy: true },
+      // 42-49: よんでみましょう
+      { id: 42, jpDisplay: "あさ", jpFurigana: "あさ", acceptedJp: ["あさ", "朝"], thaiDisplay: "ตอนเช้า", acceptedThai: ["ตอนเช้า", "เช้า"], easy: true },
+      { id: 43, jpDisplay: "うち", jpFurigana: "うち", acceptedJp: ["うち", "家", "内"], thaiDisplay: "บ้าน", acceptedThai: ["บ้าน"], easy: true },
+      { id: 44, jpDisplay: "おわります", jpFurigana: "おわります", acceptedJp: ["おわります", "終わります"], thaiDisplay: "เลิก", acceptedThai: ["เลิก", "จบ", "เสร็จ"], easy: false },
+      { id: 45, jpDisplay: "じゅぎょう", jpFurigana: "じゅぎょう", acceptedJp: ["じゅぎょう", "授業"], thaiDisplay: "ชั่วโมงเรียน คาบเรียน", acceptedThai: ["ชั่วโมงเรียน", "คาบเรียน", "ชั่วโมงเรียน คาบเรียน"], easy: false },
+      { id: 46, jpDisplay: "じゅく", jpFurigana: "じゅく", acceptedJp: ["じゅく", "塾"], thaiDisplay: "โรงเรียนกวดวิชา", acceptedThai: ["โรงเรียนกวดวิชา", "กวดวิชา", "ที่เรียนพิเศษ"], easy: false },
+      { id: 47, jpDisplay: "そして", jpFurigana: "そして", acceptedJp: ["そして"], thaiDisplay: "แล้วก็", acceptedThai: ["แล้วก็", "และ"], easy: true },
+      { id: 48, jpDisplay: "はじまります", jpFurigana: "はじまります", acceptedJp: ["はじまります", "始まります"], thaiDisplay: "เริ่ม", acceptedThai: ["เริ่ม", "เริ่มต้น"], easy: false },
+      { id: 49, jpDisplay: "やすみ", jpFurigana: "やすみ", acceptedJp: ["やすみ", "休み"], thaiDisplay: "วันหยุด", acceptedThai: ["วันหยุด", "พัก", "หยุด"], easy: true },
+      // 50-56: まんがでまとめ
+      { id: 50, jpDisplay: "えっ", jpFurigana: "えっ", acceptedJp: ["えっ", "え"], thaiDisplay: "คำอุทานแสดงความประหลาดใจในสิ่งที่ได้ยิน", acceptedThai: ["คำอุทานแสดงความประหลาดใจในสิ่งที่ได้ยิน", "คำอุทานแสดงความประหลาดใจ", "อุทาน", "เอ๊ะ", "หา"], easy: true },
+      { id: 51, jpDisplay: "これ", jpFurigana: "これ", acceptedJp: ["これ"], thaiDisplay: "นี่ อันนี้", acceptedThai: ["นี่", "อันนี้", "นี่ อันนี้"], easy: true },
+      { id: 52, jpDisplay: "しゅくだい", jpFurigana: "しゅくだい", acceptedJp: ["しゅくだい", "宿題"], thaiDisplay: "การบ้าน", acceptedThai: ["การบ้าน"], easy: true },
+      { id: 53, jpDisplay: "すうじ", jpFurigana: "すうじ", acceptedJp: ["すうじ", "数字"], thaiDisplay: "ตัวเลข", acceptedThai: ["ตัวเลข", "เลข"], easy: true },
+      { id: 54, jpDisplay: "たいへんですね。", jpFurigana: "たいへんですね。", acceptedJp: ["たいへんですね。", "たいへんですね", "大変ですね。", "大変ですね"], thaiDisplay: "แย่เลยนะ ลำบากเนอะ", acceptedThai: ["แย่เลยนะ", "ลำบากเนอะ", "แย่เลยนะ ลำบากเนอะ", "ลำบากนะ", "แย่จัง"], easy: false },
+      { id: 55, jpDisplay: "でも", jpFurigana: "でも", acceptedJp: ["でも"], thaiDisplay: "แต่", acceptedThai: ["แต่", "แต่ว่า"], easy: true },
+      { id: 56, jpDisplay: "まいにち", jpFurigana: "まいにち", acceptedJp: ["まいにち", "毎日"], thaiDisplay: "ทุกวัน", acceptedThai: ["ทุกวัน"], easy: true },
+      // 57-67: ぶんぽう
+      { id: 57, jpDisplay: "あれ", jpFurigana: "あれ", acceptedJp: ["あれ"], thaiDisplay: "โน่น อันโน้น", acceptedThai: ["โน่น", "อันโน้น", "โน่น อันโน้น", "นู่น", "อันนู้น"], easy: true },
+      { id: 58, jpDisplay: "うた", jpFurigana: "うた", acceptedJp: ["うた", "歌"], thaiDisplay: "เพลง", acceptedThai: ["เพลง"], easy: true },
+      { id: 59, jpDisplay: "それ", jpFurigana: "それ", acceptedJp: ["それ"], thaiDisplay: "นั่น อันนั้น", acceptedThai: ["นั่น", "อันนั้น", "นั่น อันนั้น"], easy: true },
+      { id: 60, jpDisplay: "てんぷら", jpFurigana: "てんぷら", acceptedJp: ["てんぷら", "テンプラ", "天ぷら", "天麩羅"], thaiDisplay: "เทมปุระ", acceptedThai: ["เทมปุระ"], easy: true },
+      { id: 61, jpDisplay: "ドラマ", jpFurigana: "ドラマ", acceptedJp: ["ドラマ", "どらま"], thaiDisplay: "ละครทีวี", acceptedThai: ["ละครทีวี", "ละคร"], easy: true },
+      { id: 62, jpDisplay: "どれ", jpFurigana: "どれ", acceptedJp: ["どれ"], thaiDisplay: "อันไหน", acceptedThai: ["อันไหน", "ไหน"], easy: true },
+      { id: 63, jpDisplay: "なんぷん", jpFurigana: "なんぷん", acceptedJp: ["なんぷん", "何分"], thaiDisplay: "กี่นาที", acceptedThai: ["กี่นาที"], easy: true },
+      { id: 64, jpDisplay: "日本りょうり", jpFurigana: "<ruby>日本<rt>にほん</rt></ruby>りょうり", acceptedJp: ["日本りょうり", "日本料理", "にほんりょうり"], thaiDisplay: "อาหารญี่ปุ่น", acceptedThai: ["อาหารญี่ปุ่น"], easy: false },
+      { id: 65, jpDisplay: "ひるやすみ", jpFurigana: "ひるやすみ", acceptedJp: ["ひるやすみ", "昼休み"], thaiDisplay: "พักกลางวัน", acceptedThai: ["พักกลางวัน", "พักเที่ยง"], easy: false },
+      { id: 66, jpDisplay: "やきそば", jpFurigana: "やきそば", acceptedJp: ["やきそば", "ヤキソバ", "焼きそば"], thaiDisplay: "ยากิโซบะ", acceptedThai: ["ยากิโซบะ", "ยะกิโซะบะ"], easy: true },
+      { id: 67, jpDisplay: "よる", jpFurigana: "よる", acceptedJp: ["よる", "夜"], thaiDisplay: "กลางคืน", acceptedThai: ["กลางคืน", "ตอนกลางคืน"], easy: true }
+    ];
+
+    /**
+     * 2. 7 GUI Themes ("ธีมมืด" is default)
+     */
+    const THEMES = {
+      dark: {
+        name: "ธีมมืด",
+        dot: "#38bdf8",
+        isDark: true,
+        vars: {
+          "--bg-app": "#0f1117",
+          "--bg-card": "#181b24",
+          "--bg-subtle": "#232836",
+          "--text-main": "#f1f5f9",
+          "--text-muted": "#94a3b8",
+          "--border-color": "#2d3446",
+          "--accent": "#38bdf8",
+          "--accent-text": "#0f1117",
+          "--success-bg": "rgba(16, 185, 129, 0.16)",
+          "--success-border": "#34d399",
+          "--success-text": "#6ee7b7",
+          "--error-bg": "rgba(239, 68, 68, 0.16)",
+          "--error-border": "#f87171",
+          "--error-text": "#fca5a5",
+          "--warn-bg": "rgba(245, 158, 11, 0.16)",
+          "--warn-border": "#fbbf24",
+          "--warn-text": "#fcd34d"
+        }
+      },
+      amoled: {
+        name: "ดำสนิท (AMOLED)",
+        dot: "#a78bfa",
+        isDark: true,
+        vars: {
+          "--bg-app": "#000000",
+          "--bg-card": "#101218",
+          "--bg-subtle": "#1b1e28",
+          "--text-main": "#f8fafc",
+          "--text-muted": "#9ca3af",
+          "--border-color": "#262a36",
+          "--accent": "#a78bfa",
+          "--accent-text": "#09090b",
+          "--success-bg": "rgba(16, 185, 129, 0.16)",
+          "--success-border": "#34d399",
+          "--success-text": "#6ee7b7",
+          "--error-bg": "rgba(239, 68, 68, 0.16)",
+          "--error-border": "#f87171",
+          "--error-text": "#fca5a5",
+          "--warn-bg": "rgba(245, 158, 11, 0.16)",
+          "--warn-border": "#fbbf24",
+          "--warn-text": "#fcd34d"
+        }
+      },
+      light: {
+        name: "คลีนไลท์",
+        dot: "#2563eb",
+        isDark: false,
+        vars: {
+          "--bg-app": "#f8fafc",
+          "--bg-card": "#ffffff",
+          "--bg-subtle": "#f1f5f9",
+          "--text-main": "#0f172a",
+          "--text-muted": "#64748b",
+          "--border-color": "#e2e8f0",
+          "--accent": "#2563eb",
+          "--accent-text": "#ffffff",
+          "--success-bg": "#ecfdf5",
+          "--success-border": "#10b981",
+          "--success-text": "#065f46",
+          "--error-bg": "#fef2f2",
+          "--error-border": "#ef4444",
+          "--error-text": "#991b1b",
+          "--warn-bg": "#fffbeb",
+          "--warn-border": "#f59e0b",
+          "--warn-text": "#92400e"
+        }
+      },
+      matcha: {
+        name: "มัทฉะ",
+        dot: "#15803d",
+        isDark: false,
+        vars: {
+          "--bg-app": "#f2f7f2",
+          "--bg-card": "#ffffff",
+          "--bg-subtle": "#e6efe6",
+          "--text-main": "#14301d",
+          "--text-muted": "#4d6b56",
+          "--border-color": "#d1e2d3",
+          "--accent": "#15803d",
+          "--accent-text": "#ffffff",
+          "--success-bg": "#dcfce7",
+          "--success-border": "#16a34a",
+          "--success-text": "#14532d",
+          "--error-bg": "#fee2e2",
+          "--error-border": "#dc2626",
+          "--error-text": "#7f1d1d",
+          "--warn-bg": "#fef3c7",
+          "--warn-border": "#d97706",
+          "--warn-text": "#92400e"
+        }
+      },
+      sakura: {
+        name: "ซากุระ",
+        dot: "#db2777",
+        isDark: false,
+        vars: {
+          "--bg-app": "#fdf2f8",
+          "--bg-card": "#ffffff",
+          "--bg-subtle": "#fce7f3",
+          "--text-main": "#4a152f",
+          "--text-muted": "#8c4a6b",
+          "--border-color": "#fbcfe8",
+          "--accent": "#db2777",
+          "--accent-text": "#ffffff",
+          "--success-bg": "#ecfdf5",
+          "--success-border": "#10b981",
+          "--success-text": "#065f46",
+          "--error-bg": "#ffe4e6",
+          "--error-border": "#e11d48",
+          "--error-text": "#881337",
+          "--warn-bg": "#fef3c7",
+          "--warn-border": "#d97706",
+          "--warn-text": "#92400e"
+        }
+      },
+      ocean: {
+        name: "โอเชียน",
+        dot: "#0284c7",
+        isDark: false,
+        vars: {
+          "--bg-app": "#f0f9ff",
+          "--bg-card": "#ffffff",
+          "--bg-subtle": "#e0f2fe",
+          "--text-main": "#0c2d48",
+          "--text-muted": "#476c8a",
+          "--border-color": "#bae6fd",
+          "--accent": "#0284c7",
+          "--accent-text": "#ffffff",
+          "--success-bg": "#ecfdf5",
+          "--success-border": "#10b981",
+          "--success-text": "#065f46",
+          "--error-bg": "#fef2f2",
+          "--error-border": "#ef4444",
+          "--error-text": "#991b1b",
+          "--warn-bg": "#fef3c7",
+          "--warn-border": "#d97706",
+          "--warn-text": "#92400e"
+        }
+      },
+      warm: {
+        name: "อบอุ่น",
+        dot: "#d97706",
+        isDark: false,
+        vars: {
+          "--bg-app": "#fefce8",
+          "--bg-card": "#fffdf7",
+          "--bg-subtle": "#fef3c7",
+          "--text-main": "#422006",
+          "--text-muted": "#78532a",
+          "--border-color": "#fde68a",
+          "--accent": "#d97706",
+          "--accent-text": "#ffffff",
+          "--success-bg": "#ecfdf5",
+          "--success-border": "#10b981",
+          "--success-text": "#065f46",
+          "--error-bg": "#fef2f2",
+          "--error-border": "#ef4444",
+          "--error-text": "#991b1b",
+          "--warn-bg": "#ffedd5",
+          "--warn-border": "#ea580c",
+          "--warn-text": "#9a3412"
+        }
+      }
+    };
+
+    /**
+     * 3. Application State
+     */
+    const THEME_STORAGE_KEY = "vocab_d3_theme_v5";
+    function loadSavedTheme() {
+      try {
+        const raw = localStorage.getItem(THEME_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && THEMES[parsed.theme]) {
+            return { theme: parsed.theme, customAccent: parsed.customAccent || "" };
+          }
+        }
+      } catch (e) {}
+      return { theme: "dark", customAccent: "" };
+    }
+
+    const savedThemeData = loadSavedTheme();
+
+    const state = {
+      theme: savedThemeData.theme,
+      customAccent: savedThemeData.customAccent,
+      soundEnabled: localStorage.getItem("vocab_d3_sound") !== "false",
+      // Setup Preferences
+      level: "easy",          // "easy" | "all"
+      order: "random",        // "random" | "sequential"
+      mode: "choice",         // "choice" | "typing-th" | "typing-jp" | "exam"
+      showFurigana: true,
+      savedPracticePrefs: {
+        level: "easy",
+        order: "random",
+        showFurigana: true
+      },
+      // Active Quiz / Exam Runtime State
+      activeView: "setupView", // "setupView" | "quizView" | "summaryView"
+      queue: [],
+      currentIndex: 0,
+      score: 0,
+      answered: false,
+      selectedChoiceIdx: null,
+      isComposing: false,
+      currentChoices: [],
+      sessionResults: [],
+      reviewFilter: "all",
+      // Mock Exam Timer (50:00)
+      EXAM_TOTAL_SECONDS: 50 * 60,
+      examSecondsLeft: 50 * 60,
+      examTimerInterval: null,
+      // History & Custom Confirmation Modal State
+      pendingModalAction: null, // "return-home" | "submit-exam"
+      isProgrammaticBack: false
+    };
+
+    /**
+     * 4. Web Audio Synthesizer (Zero external audio files)
+     */
+    let audioCtx = null;
+    function playTone(type) {
+      if (!state.soundEnabled) return;
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === "suspended") audioCtx.resume();
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        const now = audioCtx.currentTime;
+        if (type === "correct") {
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(587.33, now);
+          osc.frequency.setValueAtTime(880, now + 0.08);
+          gain.gain.setValueAtTime(0.07, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+          osc.start(now);
+          osc.stop(now + 0.23);
+        } else if (type === "wrong") {
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.linearRampToValueAtTime(175, now + 0.16);
+          gain.gain.setValueAtTime(0.07, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+          osc.start(now);
+          osc.stop(now + 0.21);
+        } else if (type === "select") {
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(520, now);
+          gain.gain.setValueAtTime(0.035, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+          osc.start(now);
+          osc.stop(now + 0.08);
+        }
+      } catch (e) {}
+    }
+
+    /**
+     * 5. Theme & Color Management
+     */
+    function applyTheme(themeKey, customAccent = "") {
+      const preset = THEMES[themeKey] || THEMES.dark;
+      const root = document.documentElement;
+
+      Object.entries(preset.vars).forEach(([key, val]) => {
+        root.style.setProperty(key, val);
+      });
+
+      const activeAccent = customAccent || preset.vars["--accent"];
+      root.style.setProperty("--accent", activeAccent);
+      root.style.setProperty("--accent-soft", hexToRgba(activeAccent, preset.isDark ? 0.16 : 0.12));
+      root.style.setProperty("--accent-text", customAccent ? getContrastColor(activeAccent) : preset.vars["--accent-text"]);
+
+      const colorInput = document.getElementById("customAccentInput");
+      if (colorInput) colorInput.value = activeAccent;
+
+      const resetBtn = document.getElementById("resetAccentBtn");
+      if (resetBtn) resetBtn.classList.toggle("hidden", !customAccent);
+
+      document.querySelectorAll("[data-theme-key]").forEach((btn) => {
+        const isCurrent = btn.dataset.themeKey === themeKey;
+        btn.style.borderColor = isCurrent ? "var(--accent)" : "var(--border-color)";
+        btn.style.backgroundColor = isCurrent ? "var(--accent-soft)" : "var(--bg-subtle)";
+      });
+
+      state.theme = themeKey;
+      state.customAccent = customAccent;
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify({ theme: themeKey, customAccent }));
+      } catch (e) {}
+    }
+
+    function hexToRgba(hex, alpha) {
+      const clean = hex.replace("#", "");
+      if (clean.length !== 6) return `rgba(56, 189, 248, ${alpha})`;
+      const r = parseInt(clean.substring(0, 2), 16);
+      const g = parseInt(clean.substring(2, 4), 16);
+      const b = parseInt(clean.substring(4, 6), 16);
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+
+    function getContrastColor(hex) {
+      const clean = hex.replace("#", "");
+      if (clean.length !== 6) return "#0f1117";
+      const r = parseInt(clean.substring(0, 2), 16);
+      const g = parseInt(clean.substring(2, 4), 16);
+      const b = parseInt(clean.substring(4, 6), 16);
+      const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+      return luminance > 0.6 ? "#0f1117" : "#ffffff";
+    }
+
+    function setThemePopoverOpen(open) {
+      const popover = document.getElementById("themePopover");
+      const backdrop = document.getElementById("themeBackdrop");
+      const menuBtn = document.getElementById("themeMenuBtn");
+      popover.classList.toggle("hidden", !open);
+      backdrop.classList.toggle("hidden", !open);
+      menuBtn.setAttribute("aria-expanded", String(open));
+    }
+
+    function initThemeControls() {
+      const grid = document.getElementById("themePresetsGrid");
+      grid.innerHTML = Object.entries(THEMES)
+        .map(
+          ([key, t]) => `
+          <button type="button" data-theme-key="${key}" class="theme-chip">
+            <span class="color-dot" style="background-color: ${t.dot};"></span>
+            <span>${t.name}</span>
+          </button>
+        `
+        )
+        .join("");
+
+      grid.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-theme-key]");
+        if (!btn) return;
+        applyTheme(btn.dataset.themeKey, "");
+      });
+
+      document.getElementById("themeMenuBtn").addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isClosed = document.getElementById("themePopover").classList.contains("hidden");
+        setThemePopoverOpen(isClosed);
+      });
+
+      document.getElementById("themeBackdrop").addEventListener("click", () => setThemePopoverOpen(false));
+      document.getElementById("closeThemeBtn").addEventListener("click", () => setThemePopoverOpen(false));
+
+      document.getElementById("customAccentInput").addEventListener("input", (e) => {
+        applyTheme(state.theme, e.target.value);
+      });
+
+      document.getElementById("resetAccentBtn").addEventListener("click", () => {
+        applyTheme(state.theme, "");
+      });
+
+      const updateSoundUI = () => {
+        document.getElementById("soundOnIcon").classList.toggle("hidden", !state.soundEnabled);
+        document.getElementById("soundOffIcon").classList.toggle("hidden", state.soundEnabled);
+      };
+      updateSoundUI();
+
+      document.getElementById("soundToggleBtn").addEventListener("click", () => {
+        state.soundEnabled = !state.soundEnabled;
+        localStorage.setItem("vocab_d3_sound", String(state.soundEnabled));
+        updateSoundUI();
+        if (state.soundEnabled) playTone("correct");
+      });
+
+      applyTheme(state.theme, state.customAccent);
+    }
+
+    /**
+     * 6. Custom Confirmation Modal + Mobile Back Button (History API) Protection
+     */
+    function openConfirmModal({ title, desc, stayLabel, leaveLabel, action }) {
+      state.pendingModalAction = action;
+      document.getElementById("confirmModalTitle").textContent = title;
+      document.getElementById("confirmModalDesc").textContent = desc;
+      document.getElementById("confirmModalStayBtn").textContent = stayLabel;
+      document.getElementById("confirmModalLeaveBtn").textContent = leaveLabel;
+      document.getElementById("confirmModalBackdrop").classList.remove("hidden");
+      document.getElementById("confirmModalStayBtn").focus();
+    }
+
+    function closeConfirmModal() {
+      state.pendingModalAction = null;
+      document.getElementById("confirmModalBackdrop").classList.add("hidden");
+    }
+
+    function promptReturnToSetup() {
+      if (state.activeView === "setupView") return;
+
+      if (state.activeView === "quizView") {
+        if (state.mode === "exam") {
+          openConfirmModal({
+            title: "ต้องการกลับไปหน้าตั้งค่าหลักหรือไม่?",
+            desc: "กำลังอยู่ในห้องสอบจำลอง หากกลับไปหน้าตั้งค่าผลสอบรอบนี้จะไม่ถูกบันทึก",
+            stayLabel: "อยู่หน้านี้ต่อ",
+            leaveLabel: "ยืนยันกลับหน้าเดิม",
+            action: "return-home"
+          });
+        } else {
+          openConfirmModal({
+            title: "ต้องการกลับไปหน้าตั้งค่าหลักหรือไม่?",
+            desc: "ความคืบหน้าในรอบนี้จะไม่ถูกบันทึก",
+            stayLabel: "อยู่หน้านี้ต่อ",
+            leaveLabel: "ยืนยันกลับหน้าเดิม",
+            action: "return-home"
+          });
+        }
+      } else if (state.activeView === "summaryView") {
+        openConfirmModal({
+          title: "ต้องการกลับไปหน้าตั้งค่าหลักหรือไม่?",
+          desc: "ต้องการกลับไปหน้าตั้งค่าเพื่อเริ่มฝึกหรือสอบรอบใหม่ใช่ไหม?",
+          stayLabel: "อยู่หน้านี้ต่อ",
+          leaveLabel: "ยืนยันกลับหน้าเดิม",
+          action: "return-home"
+        });
+      }
+    }
+
+    function executeReturnToSetup() {
+      stopExamTimer();
+      closeConfirmModal();
+      switchView("setupView");
+
+      // Cleanly pop our #session history entry so pressing back from setupView exits normally
+      if (window.history.state && window.history.state.view === "session") {
+        state.isProgrammaticBack = true;
+        window.history.back();
+      }
+    }
+
+    function pushSessionHistoryState() {
+      try {
+        if (!window.history.state || window.history.state.view !== "session") {
+          window.history.pushState({ view: "session" }, "", "#session");
+        }
+      } catch (e) {}
+    }
+
+    function initNavigationGuard() {
+      // Intercept Android / iOS / Browser Back Button when inside Quiz, Exam, or Summary
+      window.addEventListener("popstate", () => {
+        if (state.isProgrammaticBack) {
+          state.isProgrammaticBack = false;
+          return;
+        }
+
+        if (state.activeView !== "setupView") {
+          // Immediately re-push #session so staying on page keeps back-button protection active
+          pushSessionHistoryState();
+
+          setThemePopoverOpen(false);
+          promptReturnToSetup();
+        }
+      });
+
+      // Stay on page button
+      document.getElementById("confirmModalStayBtn").addEventListener("click", () => {
+        closeConfirmModal();
+        if (state.activeView !== "setupView") {
+          pushSessionHistoryState();
+        }
+        if (state.activeView === "quizView" && state.mode !== "choice") {
+          const inp = document.getElementById("answerInput");
+          if (inp && !inp.disabled) inp.focus();
+        }
+      });
+
+      // Confirm leave button
+      document.getElementById("confirmModalLeaveBtn").addEventListener("click", () => {
+        const action = state.pendingModalAction;
+        if (action === "submit-exam") {
+          finalizeExamEarly();
+        } else {
+          executeReturnToSetup();
+        }
+      });
+
+      // Clicking backdrop cancels safely
+      document.getElementById("confirmModalBackdrop").addEventListener("click", (e) => {
+        if (e.target.id === "confirmModalBackdrop") {
+          closeConfirmModal();
+          if (state.activeView !== "setupView") {
+            pushSessionHistoryState();
+          }
+        }
+      });
+    }
+
+    /**
+     * 7. Escaping & Japanese Furigana Renderer
+     */
+    function escapeHTML(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function getJapaneseHTML(item, allowFurigana) {
+      if (!allowFurigana || state.mode === "exam") {
+        return escapeHTML(item.jpDisplay);
+      }
+      return item.jpFurigana || escapeHTML(item.jpDisplay);
+    }
+
+    function extractReadingOnly(item) {
+      return item.jpFurigana
+        .replace(/<ruby>[^<]*<rt>([^<]*)<\/rt><\/ruby>/g, "$1")
+        .replace(/[~〜～。]/g, "")
+        .trim();
+    }
+
+    /**
+     * 8. Flexible Answer Checking (Japanese & Thai)
+     */
+    function normalizeJp(str) {
+      return String(str || "")
+        .normalize("NFKC")
+        .trim()
+        .replace(/\([^)]+\)/g, "")
+        .replace(/[~〜～。、.,・！!？?\s/／]/g, "")
+        .toLowerCase();
+    }
+
+    function normalizeTh(str) {
+      return String(str || "")
+        .trim()
+        .replace(/\.{2,}|…/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toLowerCase();
+    }
+
+    function checkJapaneseAnswer(userRaw, item) {
+      const userNorm = normalizeJp(userRaw);
+      if (!userNorm) return false;
+
+      const validPool = new Set();
+      const addJp = (s) => {
+        if (!s) return;
+        validPool.add(normalizeJp(s));
+        if (s.includes("/") || s.includes("／")) {
+          s.split(/[/／]/).forEach((part) => validPool.add(normalizeJp(part)));
+        }
+      };
+
+      addJp(item.jpDisplay);
+      addJp(extractReadingOnly(item));
+      if (Array.isArray(item.acceptedJp)) {
+        item.acceptedJp.forEach(addJp);
+      }
+
+      return validPool.has(userNorm);
+    }
+
+    function checkThaiAnswer(userRaw, item) {
+      const userNorm = normalizeTh(userRaw);
+      if (!userNorm) return false;
+
+      const userCompact = userNorm.replace(/\s+/g, "");
+      const validPool = new Set();
+
+      const addTh = (s) => {
+        if (!s) return;
+        const norm = normalizeTh(s);
+        if (norm) {
+          validPool.add(norm);
+          validPool.add(norm.replace(/\s+/g, ""));
+        }
+        const noParens = normalizeTh(s.replace(/\([^)]*\)/g, ""));
+        if (noParens) {
+          validPool.add(noParens);
+          validPool.add(noParens.replace(/\s+/g, ""));
+        }
+      };
+
+      addTh(item.thaiDisplay);
+
+      const cleanedTh = item.thaiDisplay.replace(/\([^)]*\)/g, "").replace(/\.{2,}|…/g, " ").trim();
+      const parts = cleanedTh.split(/[/\s]+/).filter(Boolean);
+      if (parts.length > 1 && parts.length <= 3) {
+        parts.forEach(addTh);
+      }
+
+      if (Array.isArray(item.acceptedThai)) {
+        item.acceptedThai.forEach(addTh);
+      }
+
+      return validPool.has(userNorm) || validPool.has(userCompact);
+    }
+
+    /**
+     * 9. Setup Screen Controls & Mock Exam Locking (Sequential 67 words, No Furigana)
+     */
+    function syncSetupUI() {
+      const isExam = state.mode === "exam";
+
+      const easyCount = VOCABULARY.filter((v) => v.easy).length;
+      document.getElementById("easyCountBadge").textContent = `${easyCount} คำ`;
+
+      document.querySelectorAll("#levelGroup [data-level]").forEach((el) => {
+        el.classList.toggle("selected", el.getAttribute("data-level") === state.level);
+        el.disabled = isExam;
+      });
+      document.querySelectorAll("#orderGroup [data-order]").forEach((el) => {
+        el.classList.toggle("selected", el.getAttribute("data-order") === state.order);
+        el.disabled = isExam;
+      });
+      document.querySelectorAll("#modeGroup [data-mode]").forEach((el) => {
+        el.classList.toggle("selected", el.getAttribute("data-mode") === state.mode);
+      });
+
+      ["levelSection", "orderSection", "furiganaSection"].forEach((id) => {
+        document.getElementById(id).classList.toggle("section-locked", isExam);
+      });
+
+      document.querySelectorAll(".lock-badge").forEach((badge) => {
+        badge.classList.toggle("hidden", !isExam);
+      });
+
+      document.getElementById("examLockNotice").classList.toggle("hidden", !isExam);
+
+      const setupBtn = document.getElementById("furiganaToggleSetup");
+      setupBtn.disabled = isExam;
+      setupBtn.setAttribute("aria-checked", String(state.showFurigana));
+      setupBtn.style.backgroundColor = state.showFurigana ? "var(--accent)" : "var(--border-color)";
+
+      document.getElementById("furiganaLiveLabel").textContent = state.showFurigana ? "เปิด" : "ปิด";
+      document.getElementById("furiganaLiveDot").style.backgroundColor = state.showFurigana ? "var(--accent)" : "var(--text-muted)";
+
+      document.getElementById("startBtnLabel").textContent = isExam
+        ? "เริ่มทดลองทำแบบทดสอบ (50:00)"
+        : "เริ่มฝึกเลย";
+    }
+
+    function initSetupControls() {
+      document.getElementById("levelGroup").addEventListener("click", (e) => {
+        if (state.mode === "exam") return;
+        const btn = e.target.closest("[data-level]");
+        if (!btn) return;
+        state.level = btn.getAttribute("data-level");
+        state.savedPracticePrefs.level = state.level;
+        syncSetupUI();
+      });
+
+      document.getElementById("orderGroup").addEventListener("click", (e) => {
+        if (state.mode === "exam") return;
+        const btn = e.target.closest("[data-order]");
+        if (!btn) return;
+        state.order = btn.getAttribute("data-order");
+        state.savedPracticePrefs.order = state.order;
+        syncSetupUI();
+      });
+
+      document.getElementById("modeGroup").addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-mode]");
+        if (!btn) return;
+        const nextMode = btn.getAttribute("data-mode");
+        const prevMode = state.mode;
+        if (nextMode === prevMode) return;
+
+        if (nextMode === "exam") {
+          state.savedPracticePrefs = {
+            level: state.level,
+            order: state.order,
+            showFurigana: state.showFurigana
+          };
+          state.mode = "exam";
+          // Enforce strict exam rules: All 67 words, Sequential order (top to bottom), Furigana OFF
+          state.level = "all";
+          state.order = "sequential";
+          state.showFurigana = false;
+        } else {
+          if (prevMode === "exam") {
+            state.level = state.savedPracticePrefs.level;
+            state.order = state.savedPracticePrefs.order;
+            state.showFurigana = state.savedPracticePrefs.showFurigana;
+          }
+          state.mode = nextMode;
+        }
+
+        syncSetupUI();
+      });
+
+      document.getElementById("furiganaToggleSetup").addEventListener("click", () => {
+        if (state.mode === "exam") return;
+        state.showFurigana = !state.showFurigana;
+        state.savedPracticePrefs.showFurigana = state.showFurigana;
+        syncSetupUI();
+      });
+
+      document.getElementById("furiganaLiveBtn").addEventListener("click", () => {
+        if (state.mode === "exam") return;
+        state.showFurigana = !state.showFurigana;
+        state.savedPracticePrefs.showFurigana = state.showFurigana;
+        syncSetupUI();
+        if (state.activeView === "quizView" && state.queue[state.currentIndex]) {
+          renderQuestionPromptOnly();
+        }
+      });
+
+      document.getElementById("startPracticeBtn").addEventListener("click", () => {
+        startSession();
+      });
+
+      syncSetupUI();
+    }
+
+    /**
+     * 10. Session & Mock Exam Timer Engine (50:00 countdown)
+     */
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function stopExamTimer() {
+      if (state.examTimerInterval) {
+        clearInterval(state.examTimerInterval);
+        state.examTimerInterval = null;
+      }
+    }
+
+    function formatTimeMMSS(totalSeconds) {
+      const mins = Math.floor(Math.max(0, totalSeconds) / 60);
+      const secs = Math.max(0, totalSeconds) % 60;
+      return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    }
+
+    function updateExamTimerUI() {
+      const timerText = document.getElementById("examTimerText");
+      const timerContainer = document.getElementById("examTimerContainer");
+      timerText.textContent = formatTimeMMSS(state.examSecondsLeft);
+
+      timerContainer.classList.remove("timer-pill-warn", "timer-pill-danger");
+      if (state.examSecondsLeft < 180) {
+        // Under 3 minutes -> Red
+        timerContainer.classList.add("timer-pill-danger");
+      } else if (state.examSecondsLeft < 600) {
+        // Under 10 minutes -> Amber
+        timerContainer.classList.add("timer-pill-warn");
+      }
+    }
+
+    function startExamTimer() {
+      stopExamTimer();
+      state.examSecondsLeft = state.EXAM_TOTAL_SECONDS;
+      updateExamTimerUI();
+
+      state.examTimerInterval = setInterval(() => {
+        state.examSecondsLeft -= 1;
+        updateExamTimerUI();
+
+        if (state.examSecondsLeft <= 0) {
+          stopExamTimer();
+          handleExamTimeout();
+        }
+      }, 1000);
+    }
+
+    function handleExamTimeout() {
+      closeConfirmModal();
+      const input = document.getElementById("answerInput");
+      const currentTyped = input ? input.value.trim() : "";
+
+      for (let i = state.currentIndex; i < state.queue.length; i++) {
+        const item = state.queue[i];
+        const rawAns = i === state.currentIndex ? currentTyped : "";
+        const isCorrect = rawAns ? checkJapaneseAnswer(rawAns, item) : false;
+        if (isCorrect) state.score += 1;
+        state.sessionResults.push({
+          item,
+          isCorrect,
+          userAnswer: rawAns || "(หมดเวลา / ไม่ได้ตอบ)"
+        });
+      }
+
+      showSummaryScreen(true);
+    }
+
+    function finalizeExamEarly() {
+      stopExamTimer();
+      closeConfirmModal();
+
+      const input = document.getElementById("answerInput");
+      const currentTyped = input ? input.value.trim() : "";
+
+      for (let i = state.currentIndex; i < state.queue.length; i++) {
+        const item = state.queue[i];
+        const rawAns = i === state.currentIndex ? currentTyped : "";
+        const isCorrect = rawAns ? checkJapaneseAnswer(rawAns, item) : false;
+        if (isCorrect) state.score += 1;
+        state.sessionResults.push({
+          item,
+          isCorrect,
+          userAnswer: rawAns || "(ไม่ได้ตอบ)"
+        });
+      }
+
+      showSummaryScreen(false);
+    }
+
+    function switchView(viewId) {
+      state.activeView = viewId;
+      ["setupView", "quizView", "summaryView"].forEach((id) => {
+        document.getElementById(id).classList.toggle("hidden", id !== viewId);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function startSession(customItems = null) {
+      stopExamTimer();
+      closeConfirmModal();
+
+      const isExam = state.mode === "exam";
+      let pool;
+
+      if (customItems) {
+        pool = [...customItems];
+      } else if (isExam) {
+        // Strict Exam Rule: All 67 words in exact top-to-bottom sequential order
+        pool = [...VOCABULARY];
+      } else {
+        pool = VOCABULARY.filter((item) => (state.level === "easy" ? item.easy : true));
+        if (state.order === "random") {
+          pool = shuffleArray(pool);
+        }
+      }
+
+      state.queue = pool;
+      state.currentIndex = 0;
+      state.score = 0;
+      state.answered = false;
+      state.selectedChoiceIdx = null;
+      state.sessionResults = [];
+      state.reviewFilter = "all";
+
+      document.getElementById("practiceStatusControls").classList.toggle("hidden", isExam);
+      document.getElementById("examStatusControls").classList.toggle("hidden", !isExam);
+      document.getElementById("quitBtnText").textContent = "ย้อนกลับ";
+
+      if (isExam) {
+        startExamTimer();
+      }
+
+      pushSessionHistoryState();
+      switchView("quizView");
+      renderCurrentQuestion();
+    }
+
+    /**
+     * 11. Question Rendering & Answer Interactions
+     */
+    function renderQuestionPromptOnly() {
+      const item = state.queue[state.currentIndex];
+      const promptEl = document.getElementById("questionPrompt");
+
+      if (state.mode === "typing-jp" || state.mode === "exam") {
+        promptEl.className = "prompt-text-th";
+        promptEl.textContent = item.thaiDisplay;
+      } else {
+        promptEl.className = "prompt-text-jp font-jp";
+        promptEl.innerHTML = getJapaneseHTML(item, state.showFurigana);
+      }
+    }
+
+    function renderCurrentQuestion() {
+      const item = state.queue[state.currentIndex];
+      const total = state.queue.length;
+      const isExam = state.mode === "exam";
+      const isLast = state.currentIndex === total - 1;
+
+      state.answered = false;
+      state.selectedChoiceIdx = null;
+
+      document.getElementById("progressBar").style.width = `${(state.currentIndex / total) * 100}%`;
+      if (isExam) {
+        document.getElementById("examProgressText").textContent = `ข้อที่ ${state.currentIndex + 1} / ${total}`;
+      } else {
+        document.getElementById("progressText").textContent = `ข้อ ${state.currentIndex + 1} / ${total}`;
+        document.getElementById("scoreText").textContent = `ถูก ${state.score}`;
+      }
+
+      const card = document.getElementById("questionCard");
+      card.classList.remove("animate-in");
+      void card.offsetWidth;
+      card.classList.add("animate-in");
+
+      renderQuestionPromptOnly();
+
+      const feedbackBox = document.getElementById("feedbackBox");
+      feedbackBox.classList.add("hidden");
+
+      const choiceContainer = document.getElementById("choiceContainer");
+      const typingContainer = document.getElementById("typingContainer");
+      const modeBadge = document.getElementById("modeBadge");
+      const kbHint = document.getElementById("keyboardHintText");
+      const skipBtn = document.getElementById("skipBtn");
+      const primaryBtn = document.getElementById("primaryActionBtn");
+      const primaryLabel = document.getElementById("primaryActionLabel");
+
+      if (state.mode === "choice") {
+        modeBadge.textContent = "ติ๊กเลือกคำแปล";
+        modeBadge.style.backgroundColor = "var(--accent-soft)";
+        modeBadge.style.color = "var(--accent)";
+        kbHint.textContent = "กด 1–4 เลือกข้อ • Enter ยืนยันคำตอบ";
+
+        choiceContainer.classList.remove("hidden");
+        typingContainer.classList.add("hidden");
+
+        skipBtn.classList.remove("hidden");
+        skipBtn.disabled = false;
+        skipBtn.textContent = "ดูเฉลย / ข้าม";
+
+        primaryBtn.classList.remove("hidden");
+        primaryBtn.disabled = true;
+        primaryLabel.textContent = "ยืนยันคำตอบ";
+
+        generateChoices(item);
+      } else if (isExam) {
+        modeBadge.textContent = "ทดลองทำแบบทดสอบจริง (เรียงลำดับ)";
+        modeBadge.style.backgroundColor = "var(--warn-bg)";
+        modeBadge.style.color = "var(--warn-text)";
+        kbHint.textContent = "พิมพ์ภาษาญี่ปุ่นแล้วกด Enter เพื่อไปข้อถัดไป";
+
+        choiceContainer.classList.add("hidden");
+        typingContainer.classList.remove("hidden");
+
+        skipBtn.classList.add("hidden");
+
+        primaryBtn.classList.remove("hidden");
+        primaryBtn.disabled = false;
+        primaryLabel.textContent = isLast ? "ส่งข้อสอบและดูคะแนน" : "ส่งคำตอบและไปข้อถัดไป";
+
+        const input = document.getElementById("answerInput");
+        input.value = "";
+        input.disabled = false;
+        input.setAttribute("lang", "ja");
+        input.placeholder = "พิมพ์คันจิ หรือ ฮิรางานะ / คาตาคานะ...";
+        document.getElementById("typingHelperNote").innerHTML =
+          'พิมพ์คำตอบภาษาญี่ปุ่นแล้วกด <kbd class="font-mono">Enter</kbd> (ไม่เฉลยระหว่างสอบ)';
+
+        setTimeout(() => input.focus(), 30);
+      } else {
+        choiceContainer.classList.add("hidden");
+        typingContainer.classList.remove("hidden");
+
+        skipBtn.classList.remove("hidden");
+        skipBtn.disabled = false;
+        skipBtn.textContent = "ดูเฉลย / ข้าม";
+
+        primaryBtn.classList.remove("hidden");
+        primaryBtn.disabled = false;
+        primaryLabel.textContent = "ตรวจคำตอบ";
+
+        const input = document.getElementById("answerInput");
+        input.value = "";
+        input.disabled = false;
+
+        if (state.mode === "typing-th") {
+          modeBadge.textContent = "พิมพ์คำแปล (ภาษาไทย)";
+          modeBadge.style.backgroundColor = "var(--accent-soft)";
+          modeBadge.style.color = "var(--accent)";
+          kbHint.textContent = "Enter ตรวจคำตอบ • Enter อีกครั้งไปข้อถัดไป";
+          input.setAttribute("lang", "th");
+          input.placeholder = "พิมพ์ความหมายภาษาไทย...";
+          document.getElementById("typingHelperNote").innerHTML =
+            'พิมพ์คำแปลแล้วกด <kbd class="font-mono">Enter</kbd> เพื่อตรวจคำตอบ';
+        } else {
+          modeBadge.textContent = "พิมพ์ภาษาญี่ปุ่น";
+          modeBadge.style.backgroundColor = "var(--accent-soft)";
+          modeBadge.style.color = "var(--accent)";
+          kbHint.textContent = "รองรับคันจิ และฮิรางานะ / คาตาคานะ";
+          input.setAttribute("lang", "ja");
+          input.placeholder = "พิมพ์คันจิ หรือ ฮิรางานะ / คาตาคานะ...";
+          document.getElementById("typingHelperNote").innerHTML =
+            'พิมพ์คันจิหรือฮิรา/คาตา แล้วกด <kbd class="font-mono">Enter</kbd>';
+        }
+
+        setTimeout(() => input.focus(), 30);
+      }
+    }
+
+    function generateChoices(correctItem) {
+      const distractors = shuffleArray(
+        VOCABULARY.filter((v) => v.id !== correctItem.id && v.thaiDisplay !== correctItem.thaiDisplay)
+      ).slice(0, 3);
+
+      const options = shuffleArray([correctItem, ...distractors]);
+      state.currentChoices = options;
+
+      const container = document.getElementById("choiceContainer");
+      container.innerHTML = options
+        .map(
+          (opt, idx) => `
+          <button type="button" data-choice-idx="${idx}" class="choice-btn">
+            <span class="choice-num font-mono">${idx + 1}</span>
+            <span class="choice-label">${escapeHTML(opt.thaiDisplay)}</span>
+          </button>
+        `
+        )
+        .join("");
+    }
+
+    function handleChoiceHighlight(idx) {
+      if (state.answered || state.mode !== "choice") return;
+      if (idx < 0 || idx >= state.currentChoices.length) return;
+
+      state.selectedChoiceIdx = idx;
+      playTone("select");
+
+      document.querySelectorAll("#choiceContainer .choice-btn").forEach((btn, i) => {
+        btn.classList.toggle("choice-selected", i === idx);
+      });
+
+      document.getElementById("primaryActionBtn").disabled = false;
+    }
+
+    function handleChoiceConfirm() {
+      if (state.answered || state.mode !== "choice") return;
+      if (state.selectedChoiceIdx === null) return;
+
+      const idx = state.selectedChoiceIdx;
+      const chosen = state.currentChoices[idx];
+      const correctItem = state.queue[state.currentIndex];
+      const isCorrect = chosen.id === correctItem.id;
+
+      document.querySelectorAll("#choiceContainer .choice-btn").forEach((btn, i) => {
+        btn.disabled = true;
+        btn.classList.remove("choice-selected");
+        const opt = state.currentChoices[i];
+        if (opt.id === correctItem.id) {
+          btn.classList.add("choice-correct");
+        } else if (i === idx && !isCorrect) {
+          btn.classList.add("choice-wrong");
+        }
+      });
+
+      finalizeNormalAnswer(isCorrect, chosen.thaiDisplay);
+    }
+
+    function handleExamSubmitQuestion() {
+      const input = document.getElementById("answerInput");
+      const userVal = input.value.trim();
+      const item = state.queue[state.currentIndex];
+
+      const isCorrect = userVal ? checkJapaneseAnswer(userVal, item) : false;
+      if (isCorrect) {
+        state.score += 1;
+      }
+
+      state.sessionResults.push({
+        item,
+        isCorrect,
+        userAnswer: userVal || "(ไม่ได้ตอบ)"
+      });
+
+      if (state.currentIndex + 1 < state.queue.length) {
+        state.currentIndex += 1;
+        renderCurrentQuestion();
+      } else {
+        stopExamTimer();
+        showSummaryScreen(false);
+      }
+    }
+
+    function handleTypingSubmit() {
+      if (state.mode === "exam") {
+        handleExamSubmitQuestion();
+        return;
+      }
+
+      if (state.answered) {
+        goNextQuestion();
+        return;
+      }
+
+      const input = document.getElementById("answerInput");
+      const userVal = input.value.trim();
+      if (!userVal) {
+        input.focus();
+        return;
+      }
+
+      const item = state.queue[state.currentIndex];
+      const isCorrect =
+        state.mode === "typing-th"
+          ? checkThaiAnswer(userVal, item)
+          : checkJapaneseAnswer(userVal, item);
+
+      input.disabled = true;
+      finalizeNormalAnswer(isCorrect, userVal);
+    }
+
+    function handleSkipQuestion() {
+      if (state.answered || state.mode === "exam") return;
+
+      if (state.mode === "choice") {
+        const correctItem = state.queue[state.currentIndex];
+        document.querySelectorAll("#choiceContainer .choice-btn").forEach((btn, i) => {
+          btn.disabled = true;
+          btn.classList.remove("choice-selected");
+          if (state.currentChoices[i].id === correctItem.id) {
+            btn.classList.add("choice-correct");
+          }
+        });
+      } else {
+        document.getElementById("answerInput").disabled = true;
+      }
+
+      finalizeNormalAnswer(false, "(ข้าม)");
+    }
+
+    function finalizeNormalAnswer(isCorrect, userAnswerText) {
+      state.answered = true;
+      const item = state.queue[state.currentIndex];
+
+      if (isCorrect) {
+        state.score += 1;
+        playTone("correct");
+      } else {
+        playTone("wrong");
+      }
+
+      state.sessionResults.push({
+        item,
+        isCorrect,
+        userAnswer: userAnswerText
+      });
+
+      document.getElementById("scoreText").textContent = `ถูก ${state.score}`;
+      document.getElementById("progressBar").style.width = `${((state.currentIndex + 1) / state.queue.length) * 100}%`;
+
+      document.getElementById("skipBtn").disabled = true;
+
+      const primaryBtn = document.getElementById("primaryActionBtn");
+      primaryBtn.classList.remove("hidden");
+      primaryBtn.disabled = false;
+      const isLast = state.currentIndex === state.queue.length - 1;
+      document.getElementById("primaryActionLabel").textContent = isLast ? "ดูสรุปผล" : "ข้อถัดไป";
+
+      const box = document.getElementById("feedbackBox");
+      const icon = document.getElementById("feedbackIcon");
+      const title = document.getElementById("feedbackTitle");
+      const userAnsEl = document.getElementById("feedbackUserAnswer");
+
+      box.classList.remove("hidden");
+      if (isCorrect) {
+        box.style.backgroundColor = "var(--success-bg)";
+        box.style.borderColor = "var(--success-border)";
+        box.style.color = "var(--success-text)";
+        icon.style.backgroundColor = "var(--success-border)";
+        icon.style.color = "#0f1117";
+        icon.textContent = "✓";
+        title.textContent = "ถูกต้อง!";
+        userAnsEl.classList.add("hidden");
+      } else {
+        box.style.backgroundColor = "var(--error-bg)";
+        box.style.borderColor = "var(--error-border)";
+        box.style.color = "var(--error-text)";
+        icon.style.backgroundColor = "var(--error-border)";
+        icon.style.color = "#ffffff";
+        icon.textContent = "✕";
+        title.textContent = userAnswerText === "(ข้าม)" ? "เฉลยคำตอบ" : "ยังไม่ถูกต้อง";
+        userAnsEl.textContent = `คำตอบของคุณ: ${userAnswerText}`;
+        userAnsEl.classList.remove("hidden");
+      }
+
+      document.getElementById("feedbackJp").innerHTML = item.jpFurigana || escapeHTML(item.jpDisplay);
+      const reading = extractReadingOnly(item);
+      document.getElementById("feedbackKana").textContent =
+        reading && reading !== item.jpDisplay ? `(${reading})` : "";
+
+      const extraForms = (item.acceptedJp || []).filter(
+        (f) => f !== item.jpDisplay && f !== reading && !f.startsWith("~")
+      );
+      const altsJpEl = document.getElementById("feedbackAltsJp");
+      if (extraForms.length > 0) {
+        altsJpEl.textContent = `เขียนแบบอื่นได้: ${extraForms.join(" / ")}`;
+        altsJpEl.classList.remove("hidden");
+      } else {
+        altsJpEl.classList.add("hidden");
+      }
+
+      document.getElementById("feedbackTh").textContent = item.thaiDisplay;
+    }
+
+    function goNextQuestion() {
+      if (state.currentIndex + 1 < state.queue.length) {
+        state.currentIndex += 1;
+        renderCurrentQuestion();
+      } else {
+        showSummaryScreen(false);
+      }
+    }
+
+    /**
+     * 12. Summary & Exam Results Screen
+     */
+    function renderReviewList() {
+      const listEl = document.getElementById("practicedResultsList");
+      const itemsToRender = state.sessionResults
+        .map((entry, idx) => ({ ...entry, questionNumber: idx + 1 }))
+        .filter((entry) => (state.reviewFilter === "missed" ? !entry.isCorrect : true));
+
+      if (itemsToRender.length === 0) {
+        listEl.innerHTML = `
+          <div style="background-color: var(--bg-subtle); border-radius: 16px; padding: 24px; text-align: center; font-size: 13px; color: var(--text-muted);">
+            ยอดเยี่ยม! ไม่มีข้อที่ตอบผิดเลย 🎉
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = itemsToRender
+        .map(({ item, isCorrect, userAnswer, questionNumber }) => {
+          const badgeStyle = isCorrect
+            ? "background-color: var(--success-bg); color: var(--success-text); border: 1px solid var(--success-border);"
+            : "background-color: var(--error-bg); color: var(--error-text); border: 1px solid var(--error-border);";
+
+          const reading = extractReadingOnly(item);
+
+          return `
+            <div class="review-item">
+              <div class="review-item-left">
+                <span class="review-status-dot" style="${badgeStyle}">
+                  ${isCorrect ? "✓" : "✕"}
+                </span>
+                <div style="min-width:0;">
+                  <div class="review-word-main">
+                    <span class="font-mono" style="font-size:11px; color:var(--text-muted);">#${questionNumber}</span>
+                    <span class="font-jp" style="font-size:15px; font-weight:700;">
+                      ${item.jpFurigana || escapeHTML(item.jpDisplay)}
+                    </span>
+                    ${
+                      reading && reading !== item.jpDisplay
+                        ? `<span class="font-jp" style="font-size:12px; color:var(--text-muted);">(${escapeHTML(reading)})</span>`
+                        : ""
+                    }
+                  </div>
+                  <div style="font-size:13px; color:var(--text-muted); margin-top:2px;">${escapeHTML(item.thaiDisplay)}</div>
+                </div>
+              </div>
+              <span class="review-user-tag font-jp" style="${
+                isCorrect
+                  ? "background-color: var(--success-bg); color: var(--success-text);"
+                  : "background-color: var(--error-bg); color: var(--error-text);"
+              }">
+                ตอบ: ${escapeHTML(userAnswer)}
+              </span>
+            </div>
+          `;
+        })
+        .join("");
+    }
+
+    function syncReviewFilterButtons() {
+      const allBtn = document.getElementById("filterAllReviewBtn");
+      const missedBtn = document.getElementById("filterMissedReviewBtn");
+
+      if (state.reviewFilter === "all") {
+        allBtn.style.backgroundColor = "var(--accent)";
+        allBtn.style.color = "var(--accent-text)";
+        missedBtn.style.backgroundColor = "var(--bg-subtle)";
+        missedBtn.style.color = "var(--text-muted)";
+      } else {
+        missedBtn.style.backgroundColor = "var(--accent)";
+        missedBtn.style.color = "var(--accent-text)";
+        allBtn.style.backgroundColor = "var(--bg-subtle)";
+        allBtn.style.color = "var(--text-muted)";
+      }
+    }
+
+    function showSummaryScreen(wasTimeout = false) {
+      stopExamTimer();
+      closeConfirmModal();
+      switchView("summaryView");
+
+      const isExam = state.mode === "exam";
+      const total = state.sessionResults.length;
+      const percent = total > 0 ? Math.round((state.score / total) * 100) : 0;
+      const missedEntries = state.sessionResults.filter((r) => !r.isCorrect);
+      const missedCount = missedEntries.length;
+
+      document.getElementById("summaryScore").textContent = `${state.score}/${total}`;
+      document.getElementById("summaryPercent").textContent = `${percent}%`;
+      document.getElementById("summaryMissedCount").textContent = `${missedCount}`;
+      document.getElementById("summaryTotalListCount").textContent = `${total}`;
+
+      const emojiEl = document.getElementById("summaryEmoji");
+      if (percent === 100) emojiEl.textContent = "🏆";
+      else if (percent >= 80) emojiEl.textContent = "🎉";
+      else if (percent >= 50) emojiEl.textContent = "👍";
+      else emojiEl.textContent = "💪";
+
+      const examScoreHero = document.getElementById("examScoreHero");
+      if (isExam) {
+        document.getElementById("summaryHeading").textContent = wasTimeout
+          ? "หมดเวลาทำข้อสอบ!"
+          : "ส่งข้อสอบเรียบร้อยแล้ว!";
+        document.getElementById("summarySubheading").textContent =
+          "แบบทดสอบจำลอง だい3か ことば (หน้า 128–129) • เรียงตามลำดับ 67 ข้อ";
+
+        examScoreHero.classList.remove("hidden");
+        document.getElementById("examHeroScoreText").textContent = `ได้ ${state.score} เต็ม ${total} คะแนน`;
+
+        const elapsedSecs = Math.max(0, state.EXAM_TOTAL_SECONDS - state.examSecondsLeft);
+        const minsUsed = Math.floor(elapsedSecs / 60);
+        const secsUsed = elapsedSecs % 60;
+        document.getElementById("examTimeElapsedText").textContent = `ใช้เวลา ${minsUsed} นาที ${secsUsed} วินาที`;
+
+        const gradeBadge = document.getElementById("examGradeBadge");
+        if (percent >= 80) {
+          gradeBadge.textContent = "ระดับดีเยี่ยม";
+          gradeBadge.style.backgroundColor = "var(--success-bg)";
+          gradeBadge.style.color = "var(--success-text)";
+        } else if (percent >= 60) {
+          gradeBadge.textContent = "ผ่านเกณฑ์มาตรฐาน";
+          gradeBadge.style.backgroundColor = "var(--accent-soft)";
+          gradeBadge.style.color = "var(--accent)";
+        } else {
+          gradeBadge.textContent = "ควรทบทวนคำที่ผิดเพิ่ม";
+          gradeBadge.style.backgroundColor = "var(--warn-bg)";
+          gradeBadge.style.color = "var(--warn-text)";
+        }
+      } else {
+        document.getElementById("summaryHeading").textContent = "สรุปผลการฝึก";
+        document.getElementById("summarySubheading").textContent = "だい3か ことば (หน้า 128–129)";
+        examScoreHero.classList.add("hidden");
+      }
+
+      const retryMissedBtn = document.getElementById("retryMissedBtn");
+      if (missedCount > 0) {
+        retryMissedBtn.classList.remove("hidden");
+        document.getElementById("retryMissedCount").textContent = missedCount;
+      } else {
+        retryMissedBtn.classList.add("hidden");
+      }
+
+      state.reviewFilter = "all";
+      syncReviewFilterButtons();
+      renderReviewList();
+    }
+
+    /**
+     * 13. Event Listeners & Keyboard Shortcuts
+     */
+    function initQuizEvents() {
+      document.getElementById("choiceContainer").addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-choice-idx]");
+        if (!btn) return;
+        handleChoiceHighlight(Number(btn.dataset.choiceIdx));
+      });
+
+      document.getElementById("primaryActionBtn").addEventListener("click", () => {
+        if (state.mode === "choice") {
+          if (!state.answered) {
+            handleChoiceConfirm();
+          } else {
+            goNextQuestion();
+          }
+        } else if (state.mode === "exam") {
+          handleExamSubmitQuestion();
+        } else {
+          if (!state.answered) {
+            handleTypingSubmit();
+          } else {
+            goNextQuestion();
+          }
+        }
+      });
+
+      document.getElementById("skipBtn").addEventListener("click", handleSkipQuestion);
+
+      // Early Exam Submit Button -> opens Custom Confirmation Modal
+      document.getElementById("earlySubmitExamBtn").addEventListener("click", () => {
+        openConfirmModal({
+          title: "ยืนยันส่งข้อสอบทันที?",
+          desc: "ต้องการส่งข้อสอบและตรวจคะแนนเลยหรือไม่? (ข้อที่ยังไม่ทำจะนับเป็นไม่ได้ตอบ)",
+          stayLabel: "ทำข้อสอบต่อ",
+          leaveLabel: "ยืนยันส่งข้อสอบ",
+          action: "submit-exam"
+        });
+      });
+
+      // On-Screen Back / Home Buttons -> trigger Custom Confirmation Modal
+      document.getElementById("quitQuizBtn").addEventListener("click", promptReturnToSetup);
+      document.getElementById("headerLogoBtn").addEventListener("click", promptReturnToSetup);
+      document.getElementById("backHomeBtn").addEventListener("click", promptReturnToSetup);
+
+      // Retry Missed Words
+      document.getElementById("retryMissedBtn").addEventListener("click", () => {
+        const missedWords = state.sessionResults.filter((r) => !r.isCorrect).map((r) => r.item);
+        if (missedWords.length === 0) return;
+
+        if (state.mode === "exam") {
+          state.mode = "typing-jp";
+          state.level = state.savedPracticePrefs.level;
+          state.order = state.savedPracticePrefs.order;
+          state.showFurigana = state.savedPracticePrefs.showFurigana;
+          syncSetupUI();
+        }
+        startSession(missedWords);
+      });
+
+      // Retry All
+      document.getElementById("retryAllBtn").addEventListener("click", () => {
+        startSession(state.mode === "exam" ? null : state.queue);
+      });
+
+      // Summary Filter Toggles
+      document.getElementById("filterAllReviewBtn").addEventListener("click", () => {
+        state.reviewFilter = "all";
+        syncReviewFilterButtons();
+        renderReviewList();
+      });
+      document.getElementById("filterMissedReviewBtn").addEventListener("click", () => {
+        state.reviewFilter = "missed";
+        syncReviewFilterButtons();
+        renderReviewList();
+      });
+
+      // Japanese IME Composition Guard
+      const answerInput = document.getElementById("answerInput");
+      answerInput.addEventListener("compositionstart", () => {
+        state.isComposing = true;
+      });
+      answerInput.addEventListener("compositionend", () => {
+        state.isComposing = false;
+      });
+
+      // Global Keyboard Shortcuts
+      document.addEventListener("keydown", (e) => {
+        if (e.isComposing || state.isComposing || e.keyCode === 229) return;
+
+        if (e.key === "Escape") {
+          setThemePopoverOpen(false);
+          closeConfirmModal();
+          return;
+        }
+
+        if (!document.getElementById("confirmModalBackdrop").classList.contains("hidden")) {
+          return;
+        }
+
+        if (state.activeView === "setupView" && e.key === "Enter") {
+          e.preventDefault();
+          startSession();
+          return;
+        }
+
+        if (state.activeView !== "quizView") return;
+
+        if (state.mode === "choice") {
+          if (!state.answered && ["1", "2", "3", "4"].includes(e.key)) {
+            e.preventDefault();
+            handleChoiceHighlight(Number(e.key) - 1);
+            return;
+          }
+          if (e.key === "Enter") {
+            e.preventDefault();
+            if (!state.answered && state.selectedChoiceIdx !== null) {
+              handleChoiceConfirm();
+            } else if (state.answered) {
+              goNextQuestion();
+            }
+            return;
+          }
+        }
+
+        if (state.mode === "exam" && e.key === "Enter") {
+          e.preventDefault();
+          handleExamSubmitQuestion();
+          return;
+        }
+
+        if ((state.mode === "typing-th" || state.mode === "typing-jp") && e.key === "Enter") {
+          e.preventDefault();
+          if (state.answered) {
+            goNextQuestion();
+          } else {
+            handleTypingSubmit();
+          }
+        }
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      initThemeControls();
+      initNavigationGuard();
+      initSetupControls();
+      initQuizEvents();
+    });
+  </script>
+</body>
+</html>
