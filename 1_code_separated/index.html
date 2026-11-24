@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ฝึกคำศัพท์ だい3か ことば (หน้า 128–129)</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <!-- แถบด้านบน -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-badge">だい3か</span>
+      <div>
+        <h1>ことば ฝึกคำศัพท์</h1>
+        <p class="subtitle">หน้า 128–129 • รวม 67 คำ</p>
+      </div>
+    </div>
+
+    <button id="themeToggleBtn" class="icon-btn" type="button" aria-label="เปลี่ยนสีธีม">
+      <span class="color-dot" id="currentThemeDot"></span>
+      <span>สีธีม</span>
+    </button>
+  </header>
+
+  <!-- หน้าต่างเปลี่ยนสี GUI (Fixed ไม่ทะลุขอบจอ) -->
+  <div id="themeBackdrop" class="backdrop hidden"></div>
+  <aside id="themePopover" class="theme-popover hidden" role="dialog" aria-label="ตั้งค่าสีธีม">
+    <div class="popover-header">
+      <strong>เปลี่ยนสี GUI</strong>
+      <button id="closeThemeBtn" class="close-mini-btn" type="button">✕</button>
+    </div>
+    <div class="theme-grid">
+      <button class="theme-chip active" data-theme-val="dark" type="button">
+        <span class="dot" style="background:#38bdf8"></span> ธีมมืด
+      </button>
+      <button class="theme-chip" data-theme-val="amoled" type="button">
+        <span class="dot" style="background:#a78bfa"></span> ดำสนิท
+      </button>
+      <button class="theme-chip" data-theme-val="light" type="button">
+        <span class="dot" style="background:#2563eb"></span> คลีนไลท์
+      </button>
+      <button class="theme-chip" data-theme-val="matcha" type="button">
+        <span class="dot" style="background:#34d399"></span> มัทฉะ
+      </button>
+      <button class="theme-chip" data-theme-val="sakura" type="button">
+        <span class="dot" style="background:#f472b6"></span> ซากุระ
+      </button>
+      <button class="theme-chip" data-theme-val="amber" type="button">
+        <span class="dot" style="background:#fb923c"></span> อบอุ่น
+      </button>
+    </div>
+    <div class="custom-color-row">
+      <label for="customColorInput">สีปุ่ม / ไฮไลต์กำหนดเอง</label>
+      <div class="color-picker-wrap">
+        <span id="customColorHex">#38BDF8</span>
+        <input id="customColorInput" type="color" value="#38bdf8" />
+      </div>
+    </div>
+  </aside>
+
+  <main class="container">
+    <!-- หน้า 1: ตั้งค่าการฝึก -->
+    <section id="setupScreen" class="card">
+      <h2 class="section-title">ตั้งค่าการฝึกคำศัพท์</h2>
+
+      <div class="setting-block">
+        <div class="setting-label">1. ระดับคำศัพท์</div>
+        <div class="option-grid two-col" id="levelGroup">
+          <button class="select-card active" data-value="easy" type="button">
+            <div class="card-row">
+              <strong>เฉพาะคำง่าย</strong>
+              <span class="pill">41 คำ</span>
+            </div>
+            <small>คำพื้นฐาน คำทับศัพท์ ไม่มีคันจิยาก</small>
+          </button>
+          <button class="select-card" data-value="all" type="button">
+            <div class="card-row">
+              <strong>ทั้งหมด</strong>
+              <span class="pill">67 คำ</span>
+            </div>
+            <small>รวมครบทุกคำในบทที่ 3</small>
+          </button>
+        </div>
+      </div>
+
+      <div class="setting-block">
+        <div class="setting-label">2. ลำดับคำศัพท์</div>
+        <div class="option-grid two-col" id="orderGroup">
+          <button class="select-card active" data-value="random" type="button">
+            <strong>สุ่มลำดับ</strong>
+            <small>คละคำศัพท์ไม่ซ้ำกัน</small>
+          </button>
+          <button class="select-card" data-value="ordered" type="button">
+            <strong>เรียงตามลำดับ</strong>
+            <small>ไล่จากบนลงล่างตามหนังสือ</small>
+          </button>
+        </div>
+      </div>
+
+      <div class="setting-block">
+        <div class="setting-label">3. รูปแบบการฝึก</div>
+        <div class="option-grid" id="modeGroup">
+          <button class="select-card active" data-value="mcq" type="button">
+            <div class="card-row">
+              <strong>ติ๊กเลือกคำแปล</strong>
+              <span class="pill">1–4</span>
+            </div>
+            <small>เลือกตัวเลือกแล้วกดยืนยันคำตอบก่อนไปข้อถัดไป</small>
+          </button>
+
+          <button class="select-card" data-value="type_th" type="button">
+            <div class="card-row">
+              <strong>พิมพ์คำแปล</strong>
+              <span class="pill">ไทย</span>
+            </div>
+            <small>ดูคำญี่ปุ่น แล้วพิมพ์ความหมายภาษาไทยเอง</small>
+          </button>
+
+          <button class="select-card" data-value="type_jp" type="button">
+            <div class="card-row">
+              <strong>พิมพ์ภาษาญี่ปุ่น</strong>
+              <span class="pill">あ / 漢</span>
+            </div>
+            <small>ดูคำแปลไทย เขียน/พิมพ์คันจิ ฮิรางานะ หรือคาตาคานะ</small>
+          </button>
+
+          <button class="select-card exam-card" data-value="exam" type="button">
+            <div class="card-row">
+              <strong>ทดลองทำแบบทดสอบจริง</strong>
+              <span class="pill exam-pill">50 นาที</span>
+            </div>
+            <small>บังคับ 67 คำ • เรียงตามลำดับ • ปิดคำอ่านคันจิ • ลุ้นคะแนนตอนจบ</small>
+          </button>
+        </div>
+      </div>
+
+      <div class="setting-block" id="furiganaRow">
+        <label class="toggle-box" for="furiganaToggle">
+          <div>
+            <strong>แสดงตัวอ่านคันจิ (ฟุริกานะ)</strong>
+            <small>ช่วยให้อ่านคำที่มีคันจิได้ง่ายขึ้น</small>
+          </div>
+          <input id="furiganaToggle" type="checkbox" checked />
+        </label>
+      </div>
+
+      <div id="examNotice" class="exam-notice hidden">
+        🔒 <strong>โหมดทดลองสอบ:</strong> ล็อกใช้คำศัพท์ทั้งหมด 67 คำ เรียงตามลำดับ ปิดฟุริกานะ และจับเวลา 50:00 นาที ไม่เฉลยระหว่างทำ
+      </div>
+
+      <button id="startBtn" class="primary-btn" type="button">เริ่มฝึกเลย</button>
+    </section>
+
+    <!-- หน้า 2: หน้าฝึก / ทำข้อสอบ -->
+    <section id="quizScreen" class="card hidden">
+      <div class="quiz-top">
+        <button id="backBtn" class="ghost-btn" type="button">← ย้อนกลับ</button>
+        <div class="quiz-status">
+          <span id="progressText">1 / 41</span>
+          <span id="timerBadge" class="timer-badge hidden">⏱ <strong id="timerText">50:00</strong></span>
+        </div>
+      </div>
+
+      <div class="progress-track">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+
+      <div class="question-box">
+        <div class="q-meta">
+          <span id="qCounter">ข้อที่ 1</span>
+          <span id="qDirectionTag" class="tag">ญี่ปุ่น → ไทย</span>
+        </div>
+        <div id="qPrompt" class="q-prompt">いま</div>
+        <div id="qHint" class="q-hint hidden"></div>
+      </div>
+
+      <!-- โหมด 4 ตัวเลือก -->
+      <div id="mcqSection" class="mcq-list hidden"></div>
+
+      <!-- โหมดพิมพ์คำตอบ (ใช้ form แท้ + inputmode="text" เพื่อให้ Gboard / แป้นเขียนมือเด้งขึ้นบนทุกเบราว์เซอร์) -->
+      <div id="inputSection" class="input-area hidden">
+        <form id="answerForm" class="input-form" action="javascript:void(0)" autocomplete="off">
+          <input
+            id="answerInput"
+            name="vocab_answer"
+            class="answer-input"
+            type="text"
+            inputmode="text"
+            enterkeyhint="done"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            tabindex="0"
+            placeholder="แตะที่นี่เพื่อเขียน/พิมพ์คำตอบ..."
+          />
+        </form>
+
+        <div class="kbd-toolbar">
+          <span id="inputHelperText" class="helper-note">แตะช่องด้านบนเพื่อเปิดแป้นพิมพ์</span>
+          <button id="kbdToggleBtn" class="mini-tool-btn hidden" type="button">
+            ⌨️ แป้นคานะสำรอง
+          </button>
+        </div>
+
+        <!-- แป้นพิมพ์ญี่ปุ่นสำรอง (ซ่อนไว้เป็นค่าเริ่มต้น ใช้เมื่อต้องการจิ้มบนจอ) -->
+        <div id="builtinKbd" class="builtin-kbd hidden">
+          <div class="kbd-header">
+            <div class="kbd-tabs">
+              <button class="kbd-tab active" data-script="hira" type="button">ひらがな</button>
+              <button class="kbd-tab" data-script="kata" type="button">カタカナ</button>
+              <button class="kbd-tab" data-script="dakuten" type="button">゛/ ゜/ เล็ก</button>
+            </div>
+            <div class="kbd-actions">
+              <button id="kbdBackspaceBtn" class="kbd-fn-btn" type="button">⌫ ลบ</button>
+              <button id="kbdClearBtn" class="kbd-fn-btn" type="button">ล้าง</button>
+            </div>
+          </div>
+          <div id="kbdGrid" class="kbd-grid"></div>
+        </div>
+      </div>
+
+      <div id="feedbackBox" class="feedback-box hidden"></div>
+
+      <button id="actionBtn" class="primary-btn" type="button" disabled>ยืนยันคำตอบ</button>
+    </section>
+
+    <!-- หน้า 3: สรุปผล -->
+    <section id="resultScreen" class="card hidden">
+      <div class="result-header">
+        <span id="resultBadge" class="pill">เสร็จสิ้นการฝึก</span>
+        <h2 id="resultTitle">สรุปผลคะแนน</h2>
+        <div id="resultScoreMain" class="score-big">0 / 0</div>
+        <p id="resultSub" class="subtitle"></p>
+      </div>
+
+      <div class="result-actions">
+        <button id="retryWrongBtn" class="primary-btn hidden" type="button">ฝึกเฉพาะคำที่ผิดซ้ำ</button>
+        <button id="restartAllBtn" class="secondary-btn" type="button">เริ่มรอบใหม่ตามตั้งค่าเดิม</button>
+        <button id="backHomeResultBtn" class="ghost-btn full-btn" type="button">กลับหน้าตั้งค่าหลัก</button>
+      </div>
+
+      <h3 class="review-heading">รายละเอียดคำตอบทั้งหมด</h3>
+      <div id="reviewList" class="review-list"></div>
+    </section>
+  </main>
+
+  <!-- หน้าต่างยืนยันการกดย้อนกลับ -->
+  <div id="confirmBackdrop" class="modal-backdrop hidden">
+    <div class="confirm-modal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+      <h3 id="confirmTitle">กลับไปหน้าตั้งค่าหลักไหม?</h3>
+      <p id="confirmDesc">ความคืบหน้าในรอบปัจจุบันจะยังไม่ถูกบันทึก</p>
+      <div class="modal-buttons">
+        <button id="confirmStayBtn" class="secondary-btn" type="button">อยู่หน้านี้ต่อ</button>
+        <button id="confirmLeaveBtn" class="danger-btn" type="button">ยืนยันกลับหน้าเดิม</button>
+      </div>
+    </div>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>
